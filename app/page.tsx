@@ -8,7 +8,7 @@ export default function Home() {
       <div style={{ backgroundColor: 'grey', width: '100%', height: '100vh' }}>
         <Canvas>
           <TeslaThree />
-          <OrbitControls minDistance={20} maxDistance={50} />
+          <OrbitControls minDistance={25} maxDistance={50} />
           <Environment preset="sunset" />
         </Canvas>
       </div>
