@@ -5,7 +5,7 @@ import { Canvas } from '@react-three/fiber';
 export default function Home() {
   return (
     <>
-      <div style={{ backgroundColor: 'grey', width: '100%', height: '100vh' }}>
+      <div style={{ backgroundColor: 'white', width: '100%', height: '100vh' }}>
         <Canvas>
           <TeslaThree />
           <OrbitControls minDistance={25} maxDistance={50} />
