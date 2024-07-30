@@ -8,13 +8,16 @@ export default function Home() {
   return (
     <>
       <div className="visualContainer">
-        <div className="colorpicker" style={{ backgroundColor: color }}>
-          <input
-            type="color"
-            className="colorinput"
-            value={color}
-            onChange={(e) => setColor(e.target.value)}
-          />
+        <div className="colorChoiceContainer">
+          <label className="bold-text">Choose your color here</label>
+          <div className="colorpicker" style={{ backgroundColor: color }}>
+            <input
+              type="color"
+              className="colorinput"
+              value={color}
+              onChange={(e) => setColor(e.target.value)}
+            />
+          </div>
         </div>
         <div className="modelContainer">
           <Canvas>
