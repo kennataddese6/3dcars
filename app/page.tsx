@@ -1,10 +1,15 @@
 "use client";
-import { OrbitControls, Environment } from "@react-three/drei";
+import {
+  OrbitControls,
+  Environment,
+  PerspectiveCamera,
+} from "@react-three/drei";
 import { TeslaThree } from "@/component/teslathree";
 import { Canvas } from "@react-three/fiber";
-import { useState } from "react";
+import { useState, useRef } from "react";
 export default function Home() {
   const [color, setColor] = useState("#000");
+  const camRef = useRef();
   return (
     <>
       <div className="visualContainer">
@@ -20,9 +25,17 @@ export default function Home() {
           </div>
         </div>
         <div className="modelContainer">
-          <Canvas>
+          <Canvas camera={{ position: [0, 0, 5], fov: 75 }}>
+            <PerspectiveCamera makeDefault ref={camRef} position={[2, 1, 4]} />
             <TeslaThree color={color} />
-            <OrbitControls minDistance={15} maxDistance={50} />
+            <OrbitControls
+              target={[0, 0, 0]}
+              autoRotate
+              autoRotateSpeed={0.5}
+              camera={camRef.current}
+              minDistance={20}
+              maxDistance={50}
+            />
             <Environment preset="sunset" />
           </Canvas>
         </div>
