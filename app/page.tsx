@@ -13,17 +13,6 @@ export default function Home() {
   return (
     <>
       <div className="visualContainer">
-        <div className="colorChoiceContainer">
-          <label className="bold-text">Choose your color here</label>
-          <div className="colorpicker" style={{ backgroundColor: color }}>
-            <input
-              type="color"
-              className="colorinput"
-              value={color}
-              onChange={(e) => setColor(e.target.value)}
-            />
-          </div>
-        </div>
         <div className="modelContainer">
           <Canvas camera={{ position: [0, 0, 5], fov: 75 }}>
             <PerspectiveCamera makeDefault ref={camRef} position={[2, 1, 4]} />
@@ -35,9 +24,21 @@ export default function Home() {
               camera={camRef.current}
               minDistance={20}
               maxDistance={50}
+              maxPolarAngle={Math.PI / 2}
             />
             <Environment preset="sunset" />
           </Canvas>
+        </div>
+        <div className="colorChoiceContainer">
+          <label className="bold-text">Choose your color here</label>
+          <div className="colorpicker" style={{ backgroundColor: color }}>
+            <input
+              type="color"
+              className="colorinput"
+              value={color}
+              onChange={(e) => setColor(e.target.value)}
+            />
+          </div>
         </div>
       </div>
     </>
