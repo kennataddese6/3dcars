@@ -14,13 +14,14 @@
   display: flex;
 }
 .modelContainer {
-  width: 75%;
+  width: 70%;
   height: 100vh;
 }
 .colorChoiceContainer {
-  width: 25%;
+  width: 30%;
   padding: 2em;
-  height: 100vh;
+  max-height: 100vh;
+  overflow-y: scroll;
 }
 label {
   margin: 1em;
@@ -40,9 +41,6 @@ label {
   cursor: pointer;
 }
 
-.modelsImage {
-  object-fit: contain;
-}
 .carmodelContainer {
   border: 1px solid lightgray;
   margin: 1em 0;

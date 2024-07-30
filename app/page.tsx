@@ -48,6 +48,7 @@ export default function Home() {
               alt="tesla model three"
               width={150}
               height={100}
+              objectFit="cover"
               className="modelsImage"
             />
             Tesla Model 3
