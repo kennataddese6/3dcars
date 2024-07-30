@@ -9,7 +9,6 @@ export function TeslaThree({ color }) {
   // Function to change the color of the car paint
   const changeCarPaintColor = () => {
     if (carMaterial.current) {
-      console.log("I am called");
       carMaterial.current.color.set(color); // Change 'red' to your desired color
     }
   };

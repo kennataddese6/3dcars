@@ -4,7 +4,7 @@ import { TeslaThree } from "@/component/teslathree";
 import { Canvas } from "@react-three/fiber";
 import { useState } from "react";
 export default function Home() {
-  const [color, setColor] = useState("red");
+  const [color, setColor] = useState("purple");
   return (
     <>
       <div className="visualContainer">
