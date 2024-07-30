@@ -2,7 +2,7 @@
 import React, { useRef, useEffect } from "react";
 import { useGLTF } from "@react-three/drei";
 
-export function TeslaThree(props) {
+export function TeslaThree({ color }) {
   const model = useGLTF("/scene.glb");
   const carMaterial = useRef();
 
@@ -10,7 +10,7 @@ export function TeslaThree(props) {
   const changeCarPaintColor = () => {
     if (carMaterial.current) {
       console.log("I am called");
-      carMaterial.current.color.set("yellow"); // Change 'red' to your desired color
+      carMaterial.current.color.set(color); // Change 'red' to your desired color
     }
   };
   // Traverse the model and find the car paint material
@@ -35,6 +35,9 @@ export function TeslaThree(props) {
     changeCarPaintColor();
   }, [model.scene]);
 
+  useEffect(() => {
+    changeCarPaintColor();
+  }, [color]);
   return (
     <>
       <mesh>
