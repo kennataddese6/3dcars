@@ -21,7 +21,7 @@ export default function Home() {
             <OrbitControls
               target={[0, 0, 0]}
               autoRotate
-              autoRotateSpeed={0.5}
+              autoRotateSpeed={0.1}
               camera={camRef.current}
               minDistance={20}
               maxDistance={50}
