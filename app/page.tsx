@@ -8,18 +8,19 @@ export default function Home() {
   return (
     <>
       <div className="visualContainer">
-        <div className="colorChoiceContainer">
-          <label className="center-text bold-text">
-            Choose your color here
-          </label>
-          <input
-            type="color"
-            id="favcolor"
-            name="favcolor"
-            value={color}
-            onChange={(e) => setColor(e.target.value)}
-          />
-        </div>
+        <input
+          type="color"
+          id="grad-input-4"
+          className="color-input"
+          name="favcolor"
+          value={color}
+          onChange={(e) => setColor(e.target.value)}
+        />
+        <div
+          id="custom-input-4"
+          className="custom"
+          style={{ backgroundColor: color }}
+        />
         <div className="modelContainer">
           <Canvas>
             <TeslaThree color={color} />
