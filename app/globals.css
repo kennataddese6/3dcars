@@ -11,17 +11,16 @@
 }
 .visualContainer {
   height: 100vh;
+  display: flex;
 }
 .modelContainer {
-  width: 95%;
-  height: 60vh;
+  width: 75%;
+  height: 100vh;
 }
 .colorChoiceContainer {
+  width: 25%;
   padding: 2em;
-  height: 10vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  height: 100vh;
 }
 label {
   margin: 1em;
@@ -39,4 +38,33 @@ label {
   height: 100%;
   opacity: 0;
   cursor: pointer;
+}
+
+.modelsImage {
+  object-fit: contain;
+}
+.carmodelContainer {
+  border: 1px solid lightgray;
+  margin: 1em 0;
+  cursor: pointer;
+}
+.colorPickerContainer {
+  padding: 0 1em;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+.carmodelContainer:hover {
+  border: 1px solid dodgerblue;
+  box-shadow: 0 0 6px dodgerblue;
+}
+.create-order {
+  width: 100%;
+  margin: 2em 1em;
+  padding: 0.5em;
+  background-color: dodgerblue;
+  color: white;
+  border: none;
+  outline: none;
+  border-radius: 8px;
 }

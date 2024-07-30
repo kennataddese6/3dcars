@@ -7,6 +7,7 @@ import {
 import { TeslaThree } from "@/component/teslathree";
 import { Canvas } from "@react-three/fiber";
 import { useState, useRef } from "react";
+import Image from "next/image";
 export default function Home() {
   const [color, setColor] = useState("#000");
   const camRef = useRef();
@@ -30,15 +31,52 @@ export default function Home() {
           </Canvas>
         </div>
         <div className="colorChoiceContainer">
-          <label className="bold-text">Choose your color here</label>
-          <div className="colorpicker" style={{ backgroundColor: color }}>
-            <input
-              type="color"
-              className="colorinput"
-              value={color}
-              onChange={(e) => setColor(e.target.value)}
+          <label className="bold-text">Choose your car model</label>
+          <div className="carmodelContainer">
+            <Image
+              src={"/tesla3.png"}
+              alt="tesla model three"
+              width={150}
+              height={100}
+              className="modelsImage"
             />
+            Tesla Model Y
           </div>
+          <div className="carmodelContainer">
+            <Image
+              src={"/teslay.png"}
+              alt="tesla model three"
+              width={150}
+              height={100}
+              className="modelsImage"
+            />
+            Tesla Model 3
+          </div>
+          <div className="carmodelContainer">
+            <Image
+              src={"/teslaz.jpg"}
+              alt="tesla model three"
+              width={150}
+              height={100}
+              className="modelsImage"
+            />
+            Tesla Cybertruck
+          </div>
+          <label className="bold-text">Change color</label>
+          <div className="colorPickerContainer">
+            <div className="colorpicker" style={{ backgroundColor: color }}>
+              <input
+                type="color"
+                className="colorinput"
+                value={color}
+                onChange={(e) => setColor(e.target.value)}
+              />
+            </div>
+            <label htmlFor="" className="text-secondary">
+              {color}
+            </label>
+          </div>
+          <button className="create-order">Create Order</button>
         </div>
       </div>
     </>
