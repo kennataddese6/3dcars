@@ -5,6 +5,7 @@ import {
   PerspectiveCamera,
 } from "@react-three/drei";
 import { TeslaThree } from "@/component/teslathree";
+import { CyberTruck } from "@/component/cybertruck";
 import { Canvas } from "@react-three/fiber";
 import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
@@ -12,29 +13,58 @@ export default function Home() {
   const [color, setColor] = useState("#000");
   const [option, setOption] = useState(1);
   const [expandBottom, setExpandBottom] = useState(false);
+  const [carmodel, setCarModel] = useState("3");
   const camRef = useRef();
   const handleOptionClick = (option: number) => {
     setOption(option);
     setExpandBottom(true);
   };
+  useEffect(() => {
+    console.log("car model", carmodel);
+  }, [carmodel]);
   return (
     <>
       <div className="visualContainer d-xl-flex ">
         <div className="modelContainer col-xl-9">
-          <Canvas camera={{ position: [0, 0, 5], fov: 75 }}>
-            <PerspectiveCamera makeDefault ref={camRef} position={[2, 1, 4]} />
-            <TeslaThree color={color} />
-            <OrbitControls
-              target={[0, 0, 0]}
-              autoRotate
-              autoRotateSpeed={0.1}
-              camera={camRef.current}
-              minDistance={20}
-              maxDistance={50}
-              maxPolarAngle={Math.PI / 2}
-            />
-            <Environment preset="sunset" />
-          </Canvas>
+          {carmodel === "3" ? (
+            <Canvas camera={{ position: [0, 0, 5], fov: 75 }}>
+              <PerspectiveCamera
+                makeDefault
+                ref={camRef}
+                position={[2, 1, 4]}
+              />
+              <TeslaThree color={color} />
+              <OrbitControls
+                target={[0, 0, 0]}
+                autoRotate
+                autoRotateSpeed={0.1}
+                camera={camRef.current}
+                minDistance={20}
+                maxDistance={50}
+                maxPolarAngle={Math.PI / 2}
+              />
+              <Environment preset="sunset" />
+            </Canvas>
+          ) : (
+            <Canvas camera={{ position: [0, 0, 5], fov: 75 }}>
+              <PerspectiveCamera
+                makeDefault
+                ref={camRef}
+                position={[2, 1, 4]}
+              />
+              <CyberTruck color={color} />
+              <OrbitControls
+                target={[0, 0, 0]}
+                autoRotate
+                autoRotateSpeed={0.1}
+                camera={camRef.current}
+                minDistance={500}
+                maxDistance={800}
+                maxPolarAngle={Math.PI / 2}
+              />
+              <Environment preset="sunset" />
+            </Canvas>
+          )}
         </div>
         <div
           className={expandBottom ? "mobilemenuContainer" : ""}
@@ -93,7 +123,10 @@ export default function Home() {
               />
               Tesla Model 3
             </div>
-            <div className="carmodelContainer">
+            <div
+              className="carmodelContainer"
+              onClick={() => setCarModel("cybertruck")}
+            >
               <Image
                 src={"/teslaz.jpg"}
                 alt="tesla model three"
