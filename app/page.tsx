@@ -6,7 +6,7 @@ import {
 } from "@react-three/drei";
 import { TeslaThree } from "@/component/teslathree";
 import { Canvas } from "@react-three/fiber";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 export default function Home() {
   const [color, setColor] = useState("#000");
@@ -36,8 +36,16 @@ export default function Home() {
             <Environment preset="sunset" />
           </Canvas>
         </div>
-        <div className={expandBottom ? "mobilemenuContainer" : ""}>
-          <div className="d-xl-none mobileMenu">
+        <div
+          className={expandBottom ? "mobilemenuContainer" : ""}
+          onClick={() => {
+            setExpandBottom(false);
+          }}
+        >
+          <div
+            className="d-xl-none mobileMenu"
+            onClick={(event) => event.stopPropagation()}
+          >
             <div className="menuContainer">
               <div
                 className={option === 1 ? "menuItemActive1" : ""}
@@ -56,7 +64,7 @@ export default function Home() {
                 Choose Color
               </div>
               <div
-                className={option === 3 ? ".menuItemActive3" : ""}
+                className={option === 3 ? "menuItemActive3" : ""}
                 onClick={() => {
                   handleOptionClick(3);
                 }}
