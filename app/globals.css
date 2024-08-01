@@ -11,10 +11,9 @@
 }
 .visualContainer {
   height: 100vh;
-  display: flex;
 }
 .modelContainer {
-  width: 70%;
+  width: 100%;
   height: 100vh;
 }
 .colorChoiceContainer {
@@ -22,6 +21,51 @@
   padding: 2em;
   max-height: 100vh;
   overflow-y: scroll;
+}
+.mobileMenu {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: auto;
+  color: black;
+  background-color: white;
+}
+.menuContainer {
+  border: 1px solid grey;
+  margin: 1em;
+  padding: 0.3em 0;
+  border-radius: 12px;
+  display: flex;
+  justify-content: space-between;
+}
+.menuContainer div {
+  font-weight: 900px;
+  text-align: center;
+  padding: 1.1em 0;
+  width: 33.3%;
+  font-size: 14px;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  color: grey;
+}
+.menuItemActive {
+  background-color: #171717;
+  color: white;
+}
+.menuContainer div:nth-child(1):hover {
+  background-color: #171717;
+  color: white;
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+}
+.menuContainer div:nth-child(2):hover {
+  background-color: #171717;
+  color: white;
+}
+.menuContainer div:nth-child(3):hover {
+  background-color: #171717;
+  color: white;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
 }
 label {
   margin: 1em;

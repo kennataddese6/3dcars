@@ -10,11 +10,15 @@ import { useState, useRef } from "react";
 import Image from "next/image";
 export default function Home() {
   const [color, setColor] = useState("#000");
+  const [option, setOption] = useState(1);
   const camRef = useRef();
+  const handleOptionClick = (option: number) => {
+    setOption(option);
+  };
   return (
     <>
-      <div className="visualContainer">
-        <div className="modelContainer">
+      <div className="visualContainer d-xl-flex ">
+        <div className="modelContainer col-xl-9">
           <Canvas camera={{ position: [0, 0, 5], fov: 75 }}>
             <PerspectiveCamera makeDefault ref={camRef} position={[2, 1, 4]} />
             <TeslaThree color={color} />
@@ -30,7 +34,35 @@ export default function Home() {
             <Environment preset="sunset" />
           </Canvas>
         </div>
-        <div className="colorChoiceContainer">
+        <div className="d-xl-none mobileMenu">
+          <div className="menuContainer">
+            <div
+              className={option === 1 ? "menuItemActive" : ""}
+              onClick={() => {
+                handleOptionClick(1);
+              }}
+            >
+              Select Model
+            </div>
+            <div
+              className={option === 2 ? "menuItemActive" : ""}
+              onClick={() => {
+                handleOptionClick(2);
+              }}
+            >
+              Choose Color
+            </div>
+            <div
+              className={option === 3 ? "menuItemActive" : ""}
+              onClick={() => {
+                handleOptionClick(3);
+              }}
+            >
+              Review
+            </div>
+          </div>
+        </div>
+        <div className="colorChoiceContainer d-none d-xl-block">
           <label className="bold-text">Choose your car model</label>
           <div className="carmodelContainer">
             <Image
