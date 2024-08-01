@@ -47,9 +47,21 @@
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   color: grey;
 }
-.menuItemActive {
+.menuItemActive1 {
   background-color: #171717;
   color: white;
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+}
+.menuItemActive2 {
+  background-color: #171717;
+  color: white;
+}
+.menuItemActive3 {
+  background-color: #171717;
+  color: white;
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
 }
 .menuContainer div:nth-child(1):hover {
   background-color: #171717;
@@ -64,8 +76,8 @@
 .menuContainer div:nth-child(3):hover {
   background-color: #171717;
   color: white;
-  border-top-right-radius: 8px;
-  border-bottom-right-radius: 8px;
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
 }
 label {
   margin: 1em;

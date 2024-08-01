@@ -37,7 +37,7 @@ export default function Home() {
         <div className="d-xl-none mobileMenu">
           <div className="menuContainer">
             <div
-              className={option === 1 ? "menuItemActive" : ""}
+              className={option === 1 ? "menuItemActive1" : ""}
               onClick={() => {
                 handleOptionClick(1);
               }}
@@ -45,7 +45,7 @@ export default function Home() {
               Select Model
             </div>
             <div
-              className={option === 2 ? "menuItemActive" : ""}
+              className={option === 2 ? "menuItemActive2" : ""}
               onClick={() => {
                 handleOptionClick(2);
               }}
@@ -53,7 +53,7 @@ export default function Home() {
               Choose Color
             </div>
             <div
-              className={option === 3 ? "menuItemActive" : ""}
+              className={option === 3 ? ".menuItemActive3" : ""}
               onClick={() => {
                 handleOptionClick(3);
               }}
@@ -61,6 +61,9 @@ export default function Home() {
               Review
             </div>
           </div>
+          {/*           <div>Hello</div>
+          <div>HI</div>
+          <div>Where</div> */}
         </div>
         <div className="colorChoiceContainer d-none d-xl-block">
           <label className="bold-text">Choose your car model</label>
