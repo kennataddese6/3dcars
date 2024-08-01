@@ -2,11 +2,12 @@
 import {
   OrbitControls,
   Environment,
-  PerspectiveCamera,
+  PerspectiveCamera as DreiPerspectiveCamera,
 } from "@react-three/drei";
 import { TeslaThree } from "@/component/teslathree";
 import { CyberTruck } from "@/component/cybertruck";
 import { Canvas } from "@react-three/fiber";
+import { PerspectiveCamera } from "three";
 import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 export default function Home() {
@@ -14,7 +15,7 @@ export default function Home() {
   const [option, setOption] = useState(1);
   const [expandBottom, setExpandBottom] = useState(false);
   const [carmodel, setCarModel] = useState("3");
-  const camRef = useRef();
+  const camRef = useRef<typeof PerspectiveCamera | null>(null);
   const handleOptionClick = (option: number) => {
     setOption(option);
     setExpandBottom(true);
@@ -28,7 +29,7 @@ export default function Home() {
         <div className="modelContainer col-xl-9">
           {carmodel === "3" ? (
             <Canvas camera={{ position: [0, 0, 5], fov: 75 }}>
-              <PerspectiveCamera
+              <DreiPerspectiveCamera
                 makeDefault
                 ref={camRef}
                 position={[2, 1, 4]}
@@ -47,7 +48,7 @@ export default function Home() {
             </Canvas>
           ) : (
             <Canvas camera={{ position: [0, 0, 5], fov: 75 }}>
-              <PerspectiveCamera
+              <DreiPerspectiveCamera
                 makeDefault
                 ref={camRef}
                 position={[2, 1, 4]}
