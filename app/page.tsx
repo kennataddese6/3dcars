@@ -72,6 +72,37 @@ export default function Home() {
                 Review
               </div>
             </div>
+            <div className="carmodelContainer">
+              <Image
+                src={"/tesla3.png"}
+                alt="tesla model three"
+                width={150}
+                height={100}
+                className="modelsImage"
+              />
+              Tesla Model Y
+            </div>
+            <div className="carmodelContainer">
+              <Image
+                src={"/teslay.png"}
+                alt="tesla model three"
+                width={150}
+                height={100}
+                objectFit="cover"
+                className="modelsImage"
+              />
+              Tesla Model 3
+            </div>
+            <div className="carmodelContainer">
+              <Image
+                src={"/teslaz.jpg"}
+                alt="tesla model three"
+                width={150}
+                height={100}
+                className="modelsImage"
+              />
+              Tesla Cybertruck
+            </div>
           </div>
         </div>
         <div className="colorChoiceContainer d-none d-xl-block">
