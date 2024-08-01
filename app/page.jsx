@@ -7,7 +7,6 @@ import {
 import { TeslaThree } from "@/component/teslathree";
 import { CyberTruck } from "@/component/cybertruck";
 import { Canvas } from "@react-three/fiber";
-import { PerspectiveCamera } from "three";
 import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 export default function Home() {
@@ -15,14 +14,11 @@ export default function Home() {
   const [option, setOption] = useState(1);
   const [expandBottom, setExpandBottom] = useState(false);
   const [carmodel, setCarModel] = useState("3");
-  const camRef = useRef<typeof PerspectiveCamera | null>(null);
-  const handleOptionClick = (option: number) => {
+  const camRef = useRef();
+  const handleOptionClick = (option) => {
     setOption(option);
     setExpandBottom(true);
   };
-  useEffect(() => {
-    console.log("car model", carmodel);
-  }, [carmodel]);
   return (
     <>
       <div className="visualContainer d-xl-flex ">
