@@ -20,7 +20,7 @@ export function CyberTruck({ color }) {
           ? node.material
           : [node.material];
         materials.forEach((material) => {
-          if (material.name.includes("carpaint")) {
+          if (material.name.includes("Bodyl")) {
             carMaterial.current = material;
           }
         });

@@ -135,7 +135,10 @@ export default function Home() {
             />
             Tesla Model 3
           </div>
-          <div className="carmodelContainer">
+          <div
+            className="carmodelContainer"
+            onClick={() => setCarModel("cybertruck")}
+          >
             <Image
               src={"/teslaz.jpg"}
               alt="tesla model three"
