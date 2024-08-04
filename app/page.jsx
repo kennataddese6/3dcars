@@ -99,7 +99,7 @@ export default function Home() {
                 Review
               </div>
             </div>
-            <div className={expandBottom ? '' : 'd-none'}>
+            <div className={expandBottom ? 'px-3' : 'd-none'}>
               {option === 1 ? (
                 <>
                   {' '}
@@ -113,7 +113,72 @@ export default function Home() {
                   </div>
                 </>
               ) : option === 2 ? (
-                <>option 2 </>
+                <>
+                  <p className="text-secondary">Color</p>
+                  <div className="d-flex flex-wrap">
+                    <div
+                      className="colorpicker"
+                      style={{ backgroundColor: 'green' }}
+                      onClick={() => {
+                        setColor('green');
+                      }}
+                    ></div>
+                    <div
+                      className="colorpicker"
+                      style={{ backgroundColor: 'yellow' }}
+                      onClick={() => {
+                        setColor('yellow');
+                      }}
+                    ></div>
+                    <div
+                      className="colorpicker"
+                      style={{ backgroundColor: 'red' }}
+                      onClick={() => {
+                        setColor('red');
+                      }}
+                    ></div>
+                    <div
+                      className="colorpicker"
+                      style={{ backgroundColor: 'blue' }}
+                      onClick={() => {
+                        setColor('blue');
+                      }}
+                    ></div>
+                    <div
+                      className="colorpicker"
+                      style={{ backgroundColor: 'purple' }}
+                      onClick={() => {
+                        setColor('purple');
+                      }}
+                    ></div>
+                    <div
+                      className="colorpicker"
+                      style={{ backgroundColor: 'goldenrod' }}
+                      onClick={() => {
+                        setColor('goldenrod');
+                      }}
+                    ></div>
+                    <div
+                      className="colorpicker"
+                      style={{ backgroundColor: 'pink' }}
+                      onClick={() => {
+                        setColor('pink');
+                      }}
+                    ></div>
+                  </div>
+                  <p className="text-secondary mt-4">Custom color</p>
+                  <div
+                    className="colorpicker"
+                    style={{ backgroundColor: color }}
+                  >
+                    <input
+                      type="color"
+                      className="colorinput"
+                      value={color}
+                      onChange={e => setColor(e.target.value)}
+                    />
+                  </div>
+                </>
               ) : (
                 <>option 3</>
               )}
