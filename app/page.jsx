@@ -100,14 +100,23 @@ export default function Home() {
               </div>
             </div>
             <div className={expandBottom ? '' : 'd-none'}>
-              <div className="carmodelContainer">Tesla Model Y</div>
-              <div className="carmodelContainer">Tesla Model 3</div>
-              <div
-                className="carmodelContainer"
-                onClick={() => setCarModel('cybertruck')}
-              >
-                Tesla Cybertruck
-              </div>
+              {option === 1 ? (
+                <>
+                  {' '}
+                  <div className="carmodelContainer">Tesla Model Y</div>
+                  <div className="carmodelContainer">Tesla Model 3</div>
+                  <div
+                    className="carmodelContainer"
+                    onClick={() => setCarModel('cybertruck')}
+                  >
+                    Tesla Cybertruck
+                  </div>
+                </>
+              ) : option === 2 ? (
+                <>option 2 </>
+              ) : (
+                <>option 3</>
+              )}
             </div>
           </div>
         </div>
