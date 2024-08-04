@@ -1,21 +1,21 @@
-"use client";
+'use client';
 import {
   OrbitControls,
   Environment,
   PerspectiveCamera as DreiPerspectiveCamera,
-} from "@react-three/drei";
-import { TeslaThree } from "@/component/teslathree";
-import { CyberTruck } from "@/component/cybertruck";
-import { Canvas } from "@react-three/fiber";
-import { useState, useRef, useEffect } from "react";
-import Image from "next/image";
+} from '@react-three/drei';
+import { TeslaThree } from '@/component/teslathree';
+import { CyberTruck } from '@/component/cybertruck';
+import { Canvas } from '@react-three/fiber';
+import { useState, useRef, useEffect } from 'react';
+import Image from 'next/image';
 export default function Home() {
-  const [color, setColor] = useState("#000");
+  const [color, setColor] = useState('#000');
   const [option, setOption] = useState(1);
   const [expandBottom, setExpandBottom] = useState(false);
-  const [carmodel, setCarModel] = useState("3");
+  const [carmodel, setCarModel] = useState('3');
   const camRef = useRef();
-  const handleOptionClick = (option) => {
+  const handleOptionClick = option => {
     setOption(option);
     setExpandBottom(true);
   };
@@ -23,7 +23,7 @@ export default function Home() {
     <>
       <div className="visualContainer d-xl-flex ">
         <div className="modelContainer col-xl-9">
-          {carmodel === "3" ? (
+          {/*           {carmodel === "3" ? (
             <Canvas camera={{ position: [0, 0, 5], fov: 75 }}>
               <DreiPerspectiveCamera
                 makeDefault
@@ -61,21 +61,21 @@ export default function Home() {
               />
               <Environment preset="sunset" />
             </Canvas>
-          )}
+          )} */}
         </div>
         <div
-          className={expandBottom ? "mobilemenuContainer" : ""}
+          className={expandBottom ? 'mobilemenuContainer' : ''}
           onClick={() => {
             setExpandBottom(false);
           }}
         >
           <div
             className="d-xl-none mobileMenu"
-            onClick={(event) => event.stopPropagation()}
+            onClick={event => event.stopPropagation()}
           >
             <div className="menuContainer">
               <div
-                className={option === 1 ? "menuItemActive1" : ""}
+                className={option === 1 ? 'menuItemActive1' : ''}
                 onClick={() => {
                   handleOptionClick(1);
                 }}
@@ -83,7 +83,7 @@ export default function Home() {
                 Select Model
               </div>
               <div
-                className={option === 2 ? "menuItemActive2" : ""}
+                className={option === 2 ? 'menuItemActive2' : ''}
                 onClick={() => {
                   handleOptionClick(2);
                 }}
@@ -91,7 +91,7 @@ export default function Home() {
                 Choose Color
               </div>
               <div
-                className={option === 3 ? "menuItemActive3" : ""}
+                className={option === 3 ? 'menuItemActive3' : ''}
                 onClick={() => {
                   handleOptionClick(3);
                 }}
@@ -99,13 +99,15 @@ export default function Home() {
                 Review
               </div>
             </div>
-            <div className="carmodelContainer">Tesla Model Y</div>
-            <div className="carmodelContainer">Tesla Model 3</div>
-            <div
-              className="carmodelContainer"
-              onClick={() => setCarModel("cybertruck")}
-            >
-              Tesla Cybertruck
+            <div className={expandBottom ? '' : 'd-none'}>
+              <div className="carmodelContainer">Tesla Model Y</div>
+              <div className="carmodelContainer">Tesla Model 3</div>
+              <div
+                className="carmodelContainer"
+                onClick={() => setCarModel('cybertruck')}
+              >
+                Tesla Cybertruck
+              </div>
             </div>
           </div>
         </div>
@@ -113,7 +115,7 @@ export default function Home() {
           <label className="bold-text">Choose your car model</label>
           <div className="carmodelContainer">
             <Image
-              src={"/tesla3.png"}
+              src={'/tesla3.png'}
               alt="tesla model three"
               width={150}
               height={100}
@@ -123,7 +125,7 @@ export default function Home() {
           </div>
           <div className="carmodelContainer">
             <Image
-              src={"/teslay.png"}
+              src={'/teslay.png'}
               alt="tesla model three"
               width={150}
               height={100}
@@ -134,10 +136,10 @@ export default function Home() {
           </div>
           <div
             className="carmodelContainer"
-            onClick={() => setCarModel("cybertruck")}
+            onClick={() => setCarModel('cybertruck')}
           >
             <Image
-              src={"/teslaz.jpg"}
+              src={'/teslaz.jpg'}
               alt="tesla model three"
               width={150}
               height={100}
@@ -152,7 +154,7 @@ export default function Home() {
                 type="color"
                 className="colorinput"
                 value={color}
-                onChange={(e) => setColor(e.target.value)}
+                onChange={e => setColor(e.target.value)}
               />
             </div>
             <label htmlFor="" className="text-secondary">
