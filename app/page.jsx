@@ -24,7 +24,7 @@ export default function Home() {
     <>
       <div className="visualContainer d-xl-flex ">
         <div className="modelContainer col-xl-9">
-          {/*           {carmodel === "3" ? (
+          {carmodel === "3" ? (
             <Canvas camera={{ position: [0, 0, 5], fov: 75 }}>
               <DreiPerspectiveCamera
                 makeDefault
@@ -62,7 +62,7 @@ export default function Home() {
               />
               <Environment preset="sunset" />
             </Canvas>
-          )} */}
+          )}
         </div>
         <div
           className={expandBottom ? "mobilemenuContainer" : ""}
