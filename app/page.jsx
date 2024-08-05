@@ -1,21 +1,22 @@
-'use client';
+"use client";
 import {
   OrbitControls,
   Environment,
   PerspectiveCamera as DreiPerspectiveCamera,
-} from '@react-three/drei';
-import { TeslaThree } from '@/component/teslathree';
-import { CyberTruck } from '@/component/cybertruck';
-import { Canvas } from '@react-three/fiber';
-import { useState, useRef, useEffect } from 'react';
-import Image from 'next/image';
+} from "@react-three/drei";
+import { TeslaThree } from "@/component/teslathree";
+import { CyberTruck } from "@/component/cybertruck";
+import { Canvas } from "@react-three/fiber";
+import { useState, useRef, useEffect } from "react";
+import Image from "next/image";
+import colors from "@/app/colors.json";
 export default function Home() {
-  const [color, setColor] = useState('#000');
+  const [color, setColor] = useState("#000");
   const [option, setOption] = useState(1);
   const [expandBottom, setExpandBottom] = useState(false);
-  const [carmodel, setCarModel] = useState('3');
+  const [carmodel, setCarModel] = useState("3");
   const camRef = useRef();
-  const handleOptionClick = option => {
+  const handleOptionClick = (option) => {
     setOption(option);
     setExpandBottom(true);
   };
@@ -64,18 +65,18 @@ export default function Home() {
           )} */}
         </div>
         <div
-          className={expandBottom ? 'mobilemenuContainer' : ''}
+          className={expandBottom ? "mobilemenuContainer" : ""}
           onClick={() => {
             setExpandBottom(false);
           }}
         >
           <div
             className="d-xl-none mobileMenu"
-            onClick={event => event.stopPropagation()}
+            onClick={(event) => event.stopPropagation()}
           >
             <div className="menuContainer">
               <div
-                className={option === 1 ? 'menuItemActive1' : ''}
+                className={option === 1 ? "menuItemActive1" : ""}
                 onClick={() => {
                   handleOptionClick(1);
                 }}
@@ -83,7 +84,7 @@ export default function Home() {
                 Select Model
               </div>
               <div
-                className={option === 2 ? 'menuItemActive2' : ''}
+                className={option === 2 ? "menuItemActive2" : ""}
                 onClick={() => {
                   handleOptionClick(2);
                 }}
@@ -91,7 +92,7 @@ export default function Home() {
                 Choose Color
               </div>
               <div
-                className={option === 3 ? 'menuItemActive3' : ''}
+                className={option === 3 ? "menuItemActive3" : ""}
                 onClick={() => {
                   handleOptionClick(3);
                 }}
@@ -99,15 +100,15 @@ export default function Home() {
                 Review
               </div>
             </div>
-            <div className={expandBottom ? 'px-3' : 'd-none'}>
+            <div className={expandBottom ? "px-3" : "d-none"}>
               {option === 1 ? (
                 <>
-                  {' '}
+                  {" "}
                   <div className="carmodelContainer">Tesla Model Y</div>
                   <div className="carmodelContainer">Tesla Model 3</div>
                   <div
                     className="carmodelContainer"
-                    onClick={() => setCarModel('cybertruck')}
+                    onClick={() => setCarModel("cybertruck")}
                   >
                     Tesla Cybertruck
                   </div>
@@ -116,55 +117,15 @@ export default function Home() {
                 <>
                   <p className="text-secondary">Color</p>
                   <div className="d-flex flex-wrap">
-                    <div
-                      className="colorpicker"
-                      style={{ backgroundColor: 'green' }}
-                      onClick={() => {
-                        setColor('green');
-                      }}
-                    ></div>
-                    <div
-                      className="colorpicker"
-                      style={{ backgroundColor: 'yellow' }}
-                      onClick={() => {
-                        setColor('yellow');
-                      }}
-                    ></div>
-                    <div
-                      className="colorpicker"
-                      style={{ backgroundColor: 'red' }}
-                      onClick={() => {
-                        setColor('red');
-                      }}
-                    ></div>
-                    <div
-                      className="colorpicker"
-                      style={{ backgroundColor: 'blue' }}
-                      onClick={() => {
-                        setColor('blue');
-                      }}
-                    ></div>
-                    <div
-                      className="colorpicker"
-                      style={{ backgroundColor: 'purple' }}
-                      onClick={() => {
-                        setColor('purple');
-                      }}
-                    ></div>
-                    <div
-                      className="colorpicker"
-                      style={{ backgroundColor: 'goldenrod' }}
-                      onClick={() => {
-                        setColor('goldenrod');
-                      }}
-                    ></div>
-                    <div
-                      className="colorpicker"
-                      style={{ backgroundColor: 'pink' }}
-                      onClick={() => {
-                        setColor('pink');
-                      }}
-                    ></div>
+                    {colors.map((colour) => (
+                      <div
+                        className="colorpicker"
+                        style={{ backgroundColor: `#${colour}` }}
+                        onClick={() => {
+                          setColor(`#${colour}`);
+                        }}
+                      ></div>
+                    ))}
                   </div>
                   <p className="text-secondary mt-4">Custom color</p>
                   <div
@@ -175,7 +136,7 @@ export default function Home() {
                       type="color"
                       className="colorinput"
                       value={color}
-                      onChange={e => setColor(e.target.value)}
+                      onChange={(e) => setColor(e.target.value)}
                     />
                   </div>
                 </>
@@ -189,7 +150,7 @@ export default function Home() {
           <label className="bold-text">Choose your car model</label>
           <div className="carmodelContainer">
             <Image
-              src={'/tesla3.png'}
+              src={"/tesla3.png"}
               alt="tesla model three"
               width={150}
               height={100}
@@ -199,7 +160,7 @@ export default function Home() {
           </div>
           <div className="carmodelContainer">
             <Image
-              src={'/teslay.png'}
+              src={"/teslay.png"}
               alt="tesla model three"
               width={150}
               height={100}
@@ -210,10 +171,10 @@ export default function Home() {
           </div>
           <div
             className="carmodelContainer"
-            onClick={() => setCarModel('cybertruck')}
+            onClick={() => setCarModel("cybertruck")}
           >
             <Image
-              src={'/teslaz.jpg'}
+              src={"/teslaz.jpg"}
               alt="tesla model three"
               width={150}
               height={100}
@@ -228,7 +189,7 @@ export default function Home() {
                 type="color"
                 className="colorinput"
                 value={color}
-                onChange={e => setColor(e.target.value)}
+                onChange={(e) => setColor(e.target.value)}
               />
             </div>
             <label htmlFor="" className="text-secondary">
