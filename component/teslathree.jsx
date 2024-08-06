@@ -1,23 +1,24 @@
 "use client";
 import React, { useRef, useEffect } from "react";
-import { useGLTF, useTexture } from "@react-three/drei";
+import { useGLTF } from "@react-three/drei";
+import * as THREE from "three";
 
 export function TeslaThree({ color }) {
-  const forgedImage = "/forged.png";
-  const model = useGLTF("/scene.glb");
-  const texture = useTexture(forgedImage);
+  const forged = "carbon.png";
+  const model = useGLTF("/teslamodel3.glb");
   const carMaterial = useRef();
+  const textureLoader = new THREE.TextureLoader();
+  const forgedTexture = textureLoader.load(forged);
 
+  // Set the texture to repeat
+  forgedTexture.wrapS = THREE.RepeatWrapping;
+  forgedTexture.wrapT = THREE.RepeatWrapping;
+  forgedTexture.repeat.set(10, 10); // Adjust the repeat values as needed
+
+  // Function to change the color of the car paint
   const changeCarPaintColor = () => {
     if (carMaterial.current) {
       carMaterial.current.color.set(color); // Change 'red' to your desired color
-    }
-  };
-  // Function to apply the texture to the car paint
-  const applyTexture = () => {
-    if (carMaterial.current) {
-      carMaterial.current.map = texture;
-      carMaterial.current.needsUpdate = true;
     }
   };
 
@@ -29,24 +30,27 @@ export function TeslaThree({ color }) {
           ? node.material
           : [node.material];
         materials.forEach((material) => {
-          if (material.name.includes("carpaint")) {
+          if (material.name.includes("primary")) {
             carMaterial.current = material;
+            carMaterial.current.map = forgedTexture; // Apply the forged texture
+            carMaterial.current.needsUpdate = true; // Ensure the material is updated
+            console.log("Material found and texture applied:", material);
           }
         });
       }
     });
   };
 
-  // Call the function to traverse materials and apply texture after the model is loaded
+  // Call the function to traverse materials after the model is loaded
   useEffect(() => {
     traverseMaterials(model.scene);
     // changeCarPaintColor();
-    applyTexture();
   }, [model.scene]);
 
   useEffect(() => {
     // changeCarPaintColor();
   }, [color]);
+
   return (
     <>
       <mesh>
