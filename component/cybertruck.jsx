@@ -10,6 +10,11 @@ export function CyberTruck({ color }) {
   const textureLoader = new THREE.TextureLoader();
   const forgedTexture = textureLoader.load(forged);
 
+  // Set the texture to repeat
+  forgedTexture.wrapS = THREE.RepeatWrapping;
+  forgedTexture.wrapT = THREE.RepeatWrapping;
+  forgedTexture.repeat.set(10, 10); // Adjust the repeat values as needed
+
   // Function to change the color of the car paint
   const changeCarPaintColor = () => {
     if (carMaterial.current) {
@@ -29,6 +34,7 @@ export function CyberTruck({ color }) {
             carMaterial.current = material;
             carMaterial.current.map = forgedTexture; // Apply the forged texture
             carMaterial.current.needsUpdate = true; // Ensure the material is updated
+            console.log("Material found and texture applied:", material);
           }
         });
       }
