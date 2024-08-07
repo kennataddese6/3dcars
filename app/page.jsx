@@ -120,9 +120,9 @@ export default function Home() {
                     {colors.map((colour) => (
                       <div
                         className="colorpicker"
-                        style={{ backgroundColor: `#${colour}` }}
+                        style={{ backgroundColor: `#${colour.color}` }}
                         onClick={() => {
-                          setColor(`#${colour}`);
+                          setColor(`#${colour.color}`);
                         }}
                       ></div>
                     ))}
