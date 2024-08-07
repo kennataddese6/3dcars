@@ -5,7 +5,7 @@ import * as THREE from "three";
 
 export function CyberTruck({ color, texture }) {
   const forged = texture;
-  const model = useGLTF("tesla_cybertruck.glb");
+  const model = useGLTF("teslacybertruck.glb");
   const carMaterial = useRef();
   const textureLoader = new THREE.TextureLoader();
   const forgedTexture = textureLoader.load(forged);
