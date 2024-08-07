@@ -105,14 +105,19 @@ export default function Home() {
               {option === 1 ? (
                 <>
                   {" "}
-                  <div className="carmodelContainer">Tesla Model Y</div>
-                  <div className="carmodelContainer">Tesla Model 3</div>
+                  <div
+                    className="carmodelContainer"
+                    onClick={() => setCarModel("3")}
+                  >
+                    Tesla Model 3
+                  </div>
                   <div
                     className="carmodelContainer"
                     onClick={() => setCarModel("cybertruck")}
                   >
                     Tesla Cybertruck
                   </div>
+                  <div className="carmodelContainer">Tesla Model Y</div>
                 </>
               ) : option === 2 ? (
                 <>
