@@ -50,13 +50,13 @@ export function CyberTruck({ color, texture }) {
     if (!texture) {
       changeCarPaintColor();
     }
-  }, [model.scene]);
+  }, [model.scene, forged]);
 
   useEffect(() => {
     if (!texture) {
       changeCarPaintColor();
     }
-  }, [color]);
+  }, [color, forged]);
 
   return (
     <>
