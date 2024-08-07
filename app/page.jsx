@@ -120,7 +120,7 @@ export default function Home() {
                   >
                     Tesla Cybertruck
                   </div>
-                  <div className="carmodelContainer">Tesla Model Y</div>
+                  <div className="carmodelContainer">Tesla Model y</div>
                 </>
               ) : option === 2 ? (
                 <>
