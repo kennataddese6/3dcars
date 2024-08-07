@@ -3,8 +3,8 @@ import React, { useRef, useEffect } from "react";
 import { useGLTF } from "@react-three/drei";
 import * as THREE from "three";
 
-export function CyberTruck({ color }) {
-  const forged = "silver-forged.png";
+export function CyberTruck({ color, texture }) {
+  const forged = texture;
   const model = useGLTF("/tesla_cybertruck.glb");
   const carMaterial = useRef();
   const textureLoader = new THREE.TextureLoader();
@@ -32,9 +32,12 @@ export function CyberTruck({ color }) {
         materials.forEach((material) => {
           if (material.name.includes("Bodyl")) {
             carMaterial.current = material;
-            carMaterial.current.map = forgedTexture; // Apply the forged texture
-            carMaterial.current.needsUpdate = true; // Ensure the material is updated
-            console.log("Material found and texture applied:", material);
+            if (forged) {
+              carMaterial.current.color.set("white");
+              carMaterial.current.map = forgedTexture; // Apply the forged texture
+              carMaterial.current.needsUpdate = true; // Ensure the material is updated
+              console.log("Material found and texture applied:", material);
+            }
           }
         });
       }
@@ -44,11 +47,15 @@ export function CyberTruck({ color }) {
   // Call the function to traverse materials after the model is loaded
   useEffect(() => {
     traverseMaterials(model.scene);
-    // changeCarPaintColor();
+    if (!texture) {
+      changeCarPaintColor();
+    }
   }, [model.scene]);
 
   useEffect(() => {
-    // changeCarPaintColor();
+    if (!texture) {
+      changeCarPaintColor();
+    }
   }, [color]);
 
   return (

@@ -12,6 +12,7 @@ import Image from "next/image";
 import colors from "@/app/colors.json";
 export default function Home() {
   const [color, setColor] = useState("#000");
+  const [texture, setTexture] = useState("");
   const [option, setOption] = useState(1);
   const [expandBottom, setExpandBottom] = useState(false);
   const [carmodel, setCarModel] = useState("3");
@@ -31,7 +32,7 @@ export default function Home() {
                 ref={camRef}
                 position={[2, 1, 4]}
               />
-              <TeslaThree color={color} />
+              <TeslaThree color={color} texture={texture} />
               <OrbitControls
                 target={[0, 0, 0]}
                 autoRotate
@@ -50,7 +51,7 @@ export default function Home() {
                 ref={camRef}
                 position={[2, 1, 4]}
               />
-              <CyberTruck color={color} />
+              <CyberTruck color={color} texture={texture} />
               <OrbitControls
                 target={[0, 0, 0]}
                 autoRotate
@@ -117,12 +118,14 @@ export default function Home() {
                 <>
                   <p className="text-secondary">Color</p>
                   <div className="d-flex flex-wrap">
-                    {colors.map((colour) => (
+                    {colors.map((colour, index) => (
                       <div
+                        key={index}
                         className="colorpicker"
                         style={{ backgroundColor: `#${colour.color}` }}
                         onClick={() => {
                           setColor(`#${colour.color}`);
+                          setTexture(`${colour.texture}`);
                         }}
                       ></div>
                     ))}
