@@ -35,6 +35,8 @@ export function TeslaThree({ color, texture }) {
             if (forged) {
               carMaterial.current.color.set("white");
               carMaterial.current.map = forgedTexture; // Apply the forged texture
+              /*        carMaterial.current.metalness = 1; // Adjust the value (0 to 1) for desired metallic effect */
+              /*   carMaterial.current.roughness = 0.2; // Adjust the roughness (0 to 1) for surface smoothness */
               carMaterial.current.needsUpdate = true; // Ensure the material is updated
               console.log("Material found and texture applied:", material);
             }
