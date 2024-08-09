@@ -12,7 +12,7 @@ import Image from "next/image";
 import colors from "@/app/colors.json";
 export default function Home() {
   const [color, setColor] = useState("#000");
-  const [texture, setTexture] = useState("");
+  const [texture, setTexture] = useState("/K001.png");
   const [option, setOption] = useState(1);
   const [expandBottom, setExpandBottom] = useState(false);
   const [carmodel, setCarModel] = useState("4");
