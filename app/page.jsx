@@ -49,7 +49,7 @@ export default function Home() {
               <DreiPerspectiveCamera
                 makeDefault
                 ref={camRef}
-                position={[2, 1, 4]}
+                // position={[2, 1, 4]}
               />
               <CyberTruck color={color} texture={texture} />
               <OrbitControls
