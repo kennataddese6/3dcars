@@ -118,11 +118,21 @@ export default function Home() {
                   </div>
                   <div
                     className="carmodelContainer"
-                    onClick={() => setCarModel("cybertruck")}
+                    onClick={() => {
+                      setCarModel("cybertruck");
+                      setExpandBottom(false);
+                    }}
                   >
                     Tesla Cybertruck
                   </div>
-                  <div className="carmodelContainer">Tesla Model y</div>
+                  <div
+                    className="carmodelContainer"
+                    onClick={() => {
+                      setExpandBottom(false);
+                    }}
+                  >
+                    Tesla Model y
+                  </div>
                 </>
               ) : option === 2 ? (
                 <>
