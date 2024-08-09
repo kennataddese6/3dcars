@@ -57,8 +57,8 @@ export default function Home() {
                 autoRotate
                 autoRotateSpeed={0.1}
                 camera={camRef.current}
-                minDistance={8}
-                maxDistance={20}
+                minDistance={6}
+                maxDistance={10}
                 maxPolarAngle={Math.PI / 2}
               />
               <Environment preset="sunset" />
