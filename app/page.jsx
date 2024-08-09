@@ -15,7 +15,7 @@ export default function Home() {
   const [texture, setTexture] = useState("");
   const [option, setOption] = useState(1);
   const [expandBottom, setExpandBottom] = useState(false);
-  const [carmodel, setCarModel] = useState("3");
+  const [carmodel, setCarModel] = useState("4");
   const camRef = useRef();
   const handleOptionClick = (option) => {
     setOption(option);
@@ -30,7 +30,7 @@ export default function Home() {
               <DreiPerspectiveCamera
                 makeDefault
                 ref={camRef}
-                position={[2, 1, 4]}
+                position={[2, 1, 1]}
               />
               <TeslaThree color={color} texture={texture} />
               <OrbitControls
