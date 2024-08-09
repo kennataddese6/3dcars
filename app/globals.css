@@ -17,7 +17,7 @@
   height: 100vh;
 }
 .colorChoiceContainer {
-  width: 30%;
+  width: 40%;
   padding: 2em;
   max-height: 100vh;
   overflow-y: scroll;
@@ -51,6 +51,12 @@
   display: flex;
   justify-content: space-between;
 }
+.menuContainerDesktop {
+  margin: 1em;
+  padding: 0.3em 0;
+  border-radius: 12px;
+  display: flex;
+}
 .menuContainer div {
   font-weight: 900px;
   text-align: center;
@@ -59,6 +65,29 @@
   font-size: 14px;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   color: grey;
+}
+.menuContainerDesktop div {
+  font-weight: 900px;
+  text-align: center;
+  padding: 1.1em 0;
+  width: 33.3%;
+  font-size: 14px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  cursor: pointer;
+  transition: all 1s ease;
+}
+.menuContainerDesktop
+  div:hover:not(.menuItemActive1, .menuItemActive2, .menuItemActive3) {
+  background-color: lightgrey;
+  color: #000;
+}
+.menu1 {
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+}
+.menu3 {
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
 }
 .menuItemActive1 {
   background-color: #171717;
