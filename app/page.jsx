@@ -12,7 +12,7 @@ import Image from "next/image";
 import colors from "@/app/colors.json";
 import { useGLTF } from "@react-three/drei";
 export default function Home() {
-  useGLTF.preload("/tesla_cybertruck.glb");
+  useGLTF.preload("/teslacybertruck.glb");
 
   const [color, setColor] = useState("#000");
   const [texture, setTexture] = useState("");
