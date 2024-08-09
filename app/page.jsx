@@ -72,7 +72,9 @@ export default function Home() {
           }}
         >
           <div
-            className="d-xl-none mobileMenu"
+            className={`d-xl-none  ${
+              expandBottom ? "mobileMenuActive" : "mobileMenu"
+            }`}
             onClick={(event) => event.stopPropagation()}
           >
             <div className="menuContainer">
@@ -107,7 +109,10 @@ export default function Home() {
                   {" "}
                   <div
                     className="carmodelContainer"
-                    onClick={() => setCarModel("3")}
+                    onClick={() => {
+                      setCarModel("3");
+                      setExpandBottom(false);
+                    }}
                   >
                     Tesla Model 3
                   </div>
