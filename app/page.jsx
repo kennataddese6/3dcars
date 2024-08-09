@@ -49,7 +49,7 @@ export default function Home() {
               <DreiPerspectiveCamera
                 makeDefault
                 ref={camRef}
-                position={[2, 1, 0]}
+                position={[2, 1, 1]}
               />
               <CyberTruck color={color} texture={texture} />
               <OrbitControls
@@ -57,8 +57,8 @@ export default function Home() {
                 autoRotate
                 autoRotateSpeed={0.1}
                 camera={camRef.current}
-                minDistance={5}
-                maxDistance={10}
+                minDistance={8}
+                maxDistance={20}
                 maxPolarAngle={Math.PI / 2}
               />
               <Environment preset="sunset" />

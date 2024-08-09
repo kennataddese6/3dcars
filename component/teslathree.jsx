@@ -5,7 +5,7 @@ import * as THREE from "three";
 
 export function TeslaThree({ color, texture }) {
   const forged = texture;
-  const model = useGLTF("/teslamodel3.glb");
+  const model = useGLTF("/teslamodel3lower.glb");
   const carMaterial = useRef();
   const textureLoader = new THREE.TextureLoader();
   const forgedTexture = textureLoader.load(forged);
