@@ -15,7 +15,7 @@ export default function Home() {
   const [texture, setTexture] = useState("");
   const [option, setOption] = useState(1);
   const [expandBottom, setExpandBottom] = useState(false);
-  const [carmodel, setCarModel] = useState("4");
+  const [carmodel, setCarModel] = useState("3");
   const camRef = useRef();
   const handleOptionClick = (option) => {
     setOption(option);
@@ -57,8 +57,8 @@ export default function Home() {
                 autoRotate
                 autoRotateSpeed={0.1}
                 camera={camRef.current}
-                minDistance={500}
-                maxDistance={800}
+                minDistance={5}
+                maxDistance={10}
                 maxPolarAngle={Math.PI / 2}
               />
               <Environment preset="sunset" />

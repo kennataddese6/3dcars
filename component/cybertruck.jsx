@@ -30,7 +30,7 @@ export function CyberTruck({ color, texture }) {
           ? node.material
           : [node.material];
         materials.forEach((material) => {
-          if (material.name.includes("Bodyl")) {
+          if (material.name.includes("body")) {
             carMaterial.current = material;
             if (forged) {
               carMaterial.current.color.set("white");
