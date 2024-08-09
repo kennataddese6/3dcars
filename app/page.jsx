@@ -10,15 +10,12 @@ import { Canvas } from "@react-three/fiber";
 import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import colors from "@/app/colors.json";
-import { useGLTF } from "@react-three/drei";
 export default function Home() {
-  useGLTF.preload("/teslacybertruck.glb");
-
   const [color, setColor] = useState("#000");
   const [texture, setTexture] = useState("");
   const [option, setOption] = useState(1);
   const [expandBottom, setExpandBottom] = useState(false);
-  const [carmodel, setCarModel] = useState("3");
+  const [carmodel, setCarModel] = useState("4");
   const camRef = useRef();
   const handleOptionClick = (option) => {
     setOption(option);
