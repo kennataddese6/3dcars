@@ -1,11 +1,11 @@
-"use client";
-import React, { useRef, useEffect } from "react";
-import { useGLTF } from "@react-three/drei";
-import * as THREE from "three";
+'use client';
+import React, { useRef, useEffect } from 'react';
+import { useGLTF } from '@react-three/drei';
+import * as THREE from 'three';
 
 export function TeslaThree({ color, texture }) {
   const forged = texture;
-  const model = useGLTF("/teslamodel3lower.glb");
+  const model = useGLTF('/teslamodel3.glb');
   const carMaterial = useRef();
   const textureLoader = new THREE.TextureLoader();
   const forgedTexture = textureLoader.load(forged);
@@ -23,22 +23,22 @@ export function TeslaThree({ color, texture }) {
   };
 
   // Traverse the model and find the car paint material
-  const traverseMaterials = (object) => {
-    object.traverse((node) => {
+  const traverseMaterials = object => {
+    object.traverse(node => {
       if (node.isMesh) {
         const materials = Array.isArray(node.material)
           ? node.material
           : [node.material];
-        materials.forEach((material) => {
-          if (material.name.includes("primary")) {
+        materials.forEach(material => {
+          if (material.name.includes('primary')) {
             carMaterial.current = material;
             if (forged) {
-              carMaterial.current.color.set("white");
+              carMaterial.current.color.set('white');
               carMaterial.current.map = forgedTexture; // Apply the forged texture
               /*        carMaterial.current.metalness = 1; // Adjust the value (0 to 1) for desired metallic effect */
               /*   carMaterial.current.roughness = 0.2; // Adjust the roughness (0 to 1) for surface smoothness */
               carMaterial.current.needsUpdate = true; // Ensure the material is updated
-              console.log("Material found and texture applied:", material);
+              console.log('Material found and texture applied:', material);
             }
           }
         });

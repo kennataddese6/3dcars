@@ -25,7 +25,7 @@ export default function Home() {
   return (
     <>
       <div className="visualContainer d-xl-flex ">
-        {/*  <div className="modelContainer col-xl-8">
+        <div className="modelContainer col-xl-8">
           {carmodel === '3' ? (
             <Canvas camera={{ position: [0, 0, 5], fov: 75 }}>
               <DreiPerspectiveCamera
@@ -65,7 +65,7 @@ export default function Home() {
               <Environment preset="sunset" />
             </Canvas>
           )}
-        </div> */}
+        </div>
         <div
           className={expandBottom ? 'mobilemenuContainer' : ''}
           onClick={() => {
