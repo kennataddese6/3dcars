@@ -186,6 +186,52 @@ export default function Home() {
               </div>
             </div>
           </div>
+          {option === 1 ? (
+            <>
+              {' '}
+              <div
+                className="carmodelContainer"
+                onClick={() => setCarModel('3')}
+              >
+                Tesla Model 3
+              </div>
+              <div
+                className="carmodelContainer"
+                onClick={() => setCarModel('cybertruck')}
+              >
+                Tesla Cybertruck
+              </div>
+              <div className="carmodelContainer">Tesla Model y</div>
+            </>
+          ) : option === 2 ? (
+            <>
+              <p className="text-secondary">Color</p>
+              <div className="d-flex flex-wrap">
+                {colors.map((colour, index) => (
+                  <div
+                    key={index}
+                    className="colorpicker"
+                    style={{ backgroundColor: `#${colour.color}` }}
+                    onClick={() => {
+                      setColor(`#${colour.color}`);
+                      setTexture(`${colour.texture}`);
+                    }}
+                  ></div>
+                ))}
+              </div>
+              <p className="text-secondary mt-4">Custom color</p>
+              <div className="colorpicker" style={{ backgroundColor: color }}>
+                <input
+                  type="color"
+                  className="colorinput"
+                  value={color}
+                  onChange={e => setColor(e.target.value)}
+                />
+              </div>
+            </>
+          ) : (
+            <>option 3</>
+          )}
         </div>
       </div>
     </>
