@@ -19,6 +19,7 @@ export default function Home() {
   const [option, setOption] = useState(1);
   const [expandBottom, setExpandBottom] = useState(false);
   const [carmodel, setCarModel] = useState('3');
+  const [colorIndex, setColorIndex] = useState(0);
   const camRef = useRef();
   const handleOptionClick = option => {
     setOption(option);
@@ -133,11 +134,14 @@ export default function Home() {
                     {colors.map((colour, index) => (
                       <div
                         key={index}
-                        className="colorpicker"
+                        className={`colorpicker ${
+                          colorIndex === index ? 'colorpickeractive' : ''
+                        }`}
                         style={{ backgroundColor: `#${colour.color}` }}
                         onClick={() => {
                           setColor(`#${colour.color}`);
                           setTexture(`${colour.texture}`);
+                          setColorIndex(index);
                         }}
                       ></div>
                     ))}
@@ -218,11 +222,14 @@ export default function Home() {
                 {colors.map((colour, index) => (
                   <div
                     key={index}
-                    className="colorpicker"
+                    className={`colorpicker ${
+                      colorIndex === index ? 'colorpickeractive' : ''
+                    }`}
                     style={{ backgroundColor: `#${colour.color}` }}
                     onClick={() => {
                       setColor(`#${colour.color}`);
                       setTexture(`${colour.texture}`);
+                      setColorIndex(index);
                     }}
                   ></div>
                 ))}
