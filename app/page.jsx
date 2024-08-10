@@ -15,7 +15,8 @@ export default function Home() {
   const [texture, setTexture] = useState('/K001.png');
   const [option, setOption] = useState(1);
   const [expandBottom, setExpandBottom] = useState(false);
-  const [carmodel, setCarModel] = useState('4');
+  const [carmodel, setCarModel] = useState('3');
+  const [colorIndex, setColorIndex] = useState(0);
   const camRef = useRef();
   const handleOptionClick = option => {
     setOption(option);
@@ -108,7 +109,9 @@ export default function Home() {
                 <>
                   {' '}
                   <div
-                    className="carmodelContainer"
+                    className={`carmodelContainer ${
+                      carmodel === '3' ? 'carmodelContainerActive' : ''
+                    }`}
                     onClick={() => {
                       setCarModel('3');
                       setExpandBottom(false);
@@ -117,7 +120,9 @@ export default function Home() {
                     Tesla Model 3
                   </div>
                   <div
-                    className="carmodelContainer"
+                    className={`carmodelContainer ${
+                      carmodel === 'cybertruck' ? 'carmodelContainerActive' : ''
+                    }`}
                     onClick={() => {
                       setCarModel('cybertruck');
                       setExpandBottom(false);
@@ -141,11 +146,14 @@ export default function Home() {
                     {colors.map((colour, index) => (
                       <div
                         key={index}
-                        className="colorpicker"
+                        className={`colorpicker ${
+                          colorIndex === index ? 'colorpickeractive' : ''
+                        }`}
                         style={{ backgroundColor: `#${colour.color}` }}
                         onClick={() => {
                           setColor(`#${colour.color}`);
                           setTexture(`${colour.texture}`);
+                          setColorIndex(index);
                         }}
                       ></div>
                     ))}
@@ -198,6 +206,59 @@ export default function Home() {
               </div>
             </div>
           </div>
+          {option === 1 ? (
+            <>
+              {' '}
+              <div
+                className={`carmodelContainer ${
+                  carmodel === '3' ? 'carmodelContainerActive' : ''
+                }`}
+                onClick={() => setCarModel('3')}
+              >
+                Tesla Model 3
+              </div>
+              <div
+                className={`carmodelContainer ${
+                  carmodel === 'cybertruck' ? 'carmodelContainerActive' : ''
+                }`}
+                onClick={() => setCarModel('cybertruck')}
+              >
+                Tesla Cybertruck
+              </div>
+              <div className="carmodelContainer">Tesla Model y</div>
+            </>
+          ) : option === 2 ? (
+            <>
+              <p className="text-secondary">Color</p>
+              <div className="d-flex flex-wrap">
+                {colors.map((colour, index) => (
+                  <div
+                    key={index}
+                    className={`colorpicker ${
+                      colorIndex === index ? 'colorpickeractive' : ''
+                    }`}
+                    style={{ backgroundColor: `#${colour.color}` }}
+                    onClick={() => {
+                      setColor(`#${colour.color}`);
+                      setTexture(`${colour.texture}`);
+                      setColorIndex(index);
+                    }}
+                  ></div>
+                ))}
+              </div>
+              <p className="text-secondary mt-4">Custom color</p>
+              <div className="colorpicker" style={{ backgroundColor: color }}>
+                <input
+                  type="color"
+                  className="colorinput"
+                  value={color}
+                  onChange={e => setColor(e.target.value)}
+                />
+              </div>
+            </>
+          ) : (
+            <>option 3</>
+          )}
         </div>
       </div>
     </>

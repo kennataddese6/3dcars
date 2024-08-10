@@ -135,9 +135,14 @@ label {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  border: 2px solid lightgray;
   margin-right: 0.91em;
   margin-bottom: 1em;
+  cursor: pointer;
+  border: 1px solid lightblue;
+}
+.colorpickeractive {
+  border: 2px solid dodgerblue;
+  box-shadow: 0 0 8px dodgerblue;
 }
 .colorinput {
   border: none;
@@ -161,7 +166,7 @@ label {
   display: flex;
   align-items: center;
 }
-.carmodelContainer:hover {
+.carmodelContainerActive {
   border: 1px solid dodgerblue;
   box-shadow: 0 0 6px dodgerblue;
 }
