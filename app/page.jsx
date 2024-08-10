@@ -154,6 +154,7 @@ export default function Home() {
                           setColor(`#${colour.color}`);
                           setTexture(`${colour.texture}`);
                           setColorIndex(index);
+                          setExpandBottom(false);
                         }}
                       ></div>
                     ))}
