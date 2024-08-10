@@ -109,13 +109,17 @@ export default function Home() {
                 <>
                   {' '}
                   <div
-                    className="carmodelContainer"
+                    className={`carmodelContainer ${
+                      carmodel === '3' ? 'carmodelContainerActive' : ''
+                    }`}
                     onClick={() => setCarModel('3')}
                   >
                     Tesla Model 3
                   </div>
                   <div
-                    className="carmodelContainer"
+                    className={`carmodelContainer ${
+                      carmodel === 'cybertruck' ? 'carmodelContainerActive' : ''
+                    }`}
                     onClick={() => setCarModel('cybertruck')}
                   >
                     Tesla Cybertruck
@@ -190,13 +194,17 @@ export default function Home() {
             <>
               {' '}
               <div
-                className="carmodelContainer"
+                className={`carmodelContainer ${
+                  carmodel === '3' ? 'carmodelContainerActive' : ''
+                }`}
                 onClick={() => setCarModel('3')}
               >
                 Tesla Model 3
               </div>
               <div
-                className="carmodelContainer"
+                className={`carmodelContainer ${
+                  carmodel === 'cybertruck' ? 'carmodelContainerActive' : ''
+                }`}
                 onClick={() => setCarModel('cybertruck')}
               >
                 Tesla Cybertruck

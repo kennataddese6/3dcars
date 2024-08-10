@@ -154,7 +154,7 @@ label {
   display: flex;
   align-items: center;
 }
-.carmodelContainer:hover {
+.carmodelContainerActive {
   border: 1px solid dodgerblue;
   box-shadow: 0 0 6px dodgerblue;
 }
