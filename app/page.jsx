@@ -10,7 +10,8 @@ import { Canvas } from '@react-three/fiber';
 import { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 import colors from '@/app/colors.json';
-
+import { Suspense } from 'react';
+import Spinner from './spinner';
 export default function Home() {
   const [color, setColor] = useState('#000');
   const [texture, setTexture] = useState('/K001.png');
@@ -26,26 +27,30 @@ export default function Home() {
   return (
     <>
       <div className="visualContainer d-xl-flex ">
-        {/* <div className="modelContainer col-xl-8">
+        <div className="modelContainer col-xl-8">
           {carmodel === '3' ? (
-            <Canvas camera={{ position: [0, 0, 5], fov: 75 }}>
-              <DreiPerspectiveCamera
-                makeDefault
-                ref={camRef}
-                position={[2, 1, 1]}
-              />
-              <TeslaThree color={color} texture={texture} />
-              <OrbitControls
-                target={[0, 0, 0]}
-                autoRotate
-                autoRotateSpeed={0.1}
-                camera={camRef.current}
-                minDistance={500}
-                maxDistance={800}
-                maxPolarAngle={Math.PI / 2}
-              />
-              <Environment preset="sunset" />
-            </Canvas>
+            <Suspense fallback={<Spinner />}>
+              <>
+                <Canvas camera={{ position: [0, 0, 5], fov: 75 }}>
+                  <DreiPerspectiveCamera
+                    makeDefault
+                    ref={camRef}
+                    position={[2, 1, 1]}
+                  />
+                  <TeslaThree color={color} texture={texture} />
+                  <OrbitControls
+                    target={[0, 0, 0]}
+                    autoRotate
+                    autoRotateSpeed={0.1}
+                    camera={camRef.current}
+                    minDistance={500}
+                    maxDistance={800}
+                    maxPolarAngle={Math.PI / 2}
+                  />
+                  <Environment preset="sunset" />
+                </Canvas>
+              </>
+            </Suspense>
           ) : (
             <Canvas camera={{ position: [0, 0, 5], fov: 75 }}>
               <DreiPerspectiveCamera
@@ -66,7 +71,7 @@ export default function Home() {
               <Environment preset="sunset" />
             </Canvas>
           )}
-        </div> */}
+        </div>
         <div
           className={expandBottom ? 'mobilemenuContainer' : ''}
           onClick={() => {
