@@ -28,7 +28,7 @@ export default function Home() {
     <>
       <div className="visualContainer d-xl-flex ">
         <div className="modelContainer col-xl-8">
-          {carmodel === '3' ? (
+          {/* {carmodel === '3' ? (
             <Suspense fallback={<Spinner />}>
               <>
                 <Canvas camera={{ position: [0, 0, 5], fov: 75 }}>
@@ -74,7 +74,7 @@ export default function Home() {
                 </Canvas>
               </>
             </Suspense>
-          )}
+          )} */}
         </div>
         <div
           className={expandBottom ? 'mobilemenuContainer' : ''}
@@ -148,6 +148,7 @@ export default function Home() {
                   >
                     Tesla Model y
                   </div>
+                  <p>Select model quality</p>
                 </>
               ) : option === 2 ? (
                 <>
@@ -233,6 +234,11 @@ export default function Home() {
                 Tesla Cybertruck
               </div>
               <div className="carmodelContainer">Tesla Model y</div>
+              <p className="text-secondary center-text">Select model quality</p>
+              <div className="d-flex justify-content-around flex-wrap">
+                <div className="qualityselection qualityselected">{`Low quality <1mb`}</div>
+                <div className="qualityselection">{`High quality >20mb`}</div>
+              </div>
             </>
           ) : option === 2 ? (
             <>

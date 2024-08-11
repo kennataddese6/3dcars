@@ -24,7 +24,16 @@
   border-radius: 50%;
   animation: spin 2s ease-out infinite forwards;
 }
-
+.qualityselection {
+  border: 1px solid dodgerblue;
+  color: grey;
+  padding: 1em 1em;
+  cursor: pointer;
+}
+.qualityselected {
+  background-color: dodgerblue;
+  color: white;
+}
 @keyframes spin {
   from {
     transform: rotate(0deg);
