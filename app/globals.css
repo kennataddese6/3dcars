@@ -70,7 +70,7 @@
   padding: 1.1em 0;
   width: 33.3%;
   font-size: 14px;
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   color: grey;
 }
 .menuContainerDesktop div {
@@ -130,6 +130,10 @@
 }
 label {
   margin: 1em;
+}
+.circleborder {
+  border-radius: 50%;
+  object-fit: cover;
 }
 .colorpicker {
   width: 40px;

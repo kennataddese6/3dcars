@@ -10,6 +10,7 @@ import { Canvas } from '@react-three/fiber';
 import { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 import colors from '@/app/colors.json';
+
 export default function Home() {
   const [color, setColor] = useState('#000');
   const [texture, setTexture] = useState('/K001.png');
@@ -25,7 +26,7 @@ export default function Home() {
   return (
     <>
       <div className="visualContainer d-xl-flex ">
-        <div className="modelContainer col-xl-8">
+        {/* <div className="modelContainer col-xl-8">
           {carmodel === '3' ? (
             <Canvas camera={{ position: [0, 0, 5], fov: 75 }}>
               <DreiPerspectiveCamera
@@ -65,7 +66,7 @@ export default function Home() {
               <Environment preset="sunset" />
             </Canvas>
           )}
-        </div>
+        </div> */}
         <div
           className={expandBottom ? 'mobilemenuContainer' : ''}
           onClick={() => {
@@ -156,20 +157,16 @@ export default function Home() {
                           setColorIndex(index);
                           setExpandBottom(false);
                         }}
-                      ></div>
+                      >
+                        <Image
+                          src={colour.texture}
+                          alt="textue"
+                          width={40}
+                          height={40}
+                          className="circleborder"
+                        />
+                      </div>
                     ))}
-                  </div>
-                  <p className="text-secondary mt-4">Custom color</p>
-                  <div
-                    className="colorpicker"
-                    style={{ backgroundColor: color }}
-                  >
-                    <input
-                      type="color"
-                      className="colorinput"
-                      value={color}
-                      onChange={e => setColor(e.target.value)}
-                    />
                   </div>
                 </>
               ) : (
@@ -244,17 +241,16 @@ export default function Home() {
                       setTexture(`${colour.texture}`);
                       setColorIndex(index);
                     }}
-                  ></div>
+                  >
+                    <Image
+                      src={colour.texture}
+                      alt="textue"
+                      width={40}
+                      height={40}
+                      className="circleborder"
+                    />
+                  </div>
                 ))}
-              </div>
-              <p className="text-secondary mt-4">Custom color</p>
-              <div className="colorpicker" style={{ backgroundColor: color }}>
-                <input
-                  type="color"
-                  className="colorinput"
-                  value={color}
-                  onChange={e => setColor(e.target.value)}
-                />
               </div>
             </>
           ) : (
