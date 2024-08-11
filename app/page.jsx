@@ -52,24 +52,28 @@ export default function Home() {
               </>
             </Suspense>
           ) : (
-            <Canvas camera={{ position: [0, 0, 5], fov: 75 }}>
-              <DreiPerspectiveCamera
-                makeDefault
-                ref={camRef}
-                position={[2, 1, 1]}
-              />
-              <CyberTruck color={color} texture={texture} />
-              <OrbitControls
-                target={[0, 0, 0]}
-                autoRotate
-                autoRotateSpeed={0.1}
-                camera={camRef.current}
-                minDistance={8}
-                maxDistance={20}
-                maxPolarAngle={Math.PI / 2}
-              />
-              <Environment preset="sunset" />
-            </Canvas>
+            <Suspense fallback={<Spinner />}>
+              <>
+                <Canvas camera={{ position: [0, 0, 5], fov: 75 }}>
+                  <DreiPerspectiveCamera
+                    makeDefault
+                    ref={camRef}
+                    position={[2, 1, 1]}
+                  />
+                  <CyberTruck color={color} texture={texture} />
+                  <OrbitControls
+                    target={[0, 0, 0]}
+                    autoRotate
+                    autoRotateSpeed={0.1}
+                    camera={camRef.current}
+                    minDistance={8}
+                    maxDistance={20}
+                    maxPolarAngle={Math.PI / 2}
+                  />
+                  <Environment preset="sunset" />
+                </Canvas>
+              </>
+            </Suspense>
           )}
         </div>
         <div
