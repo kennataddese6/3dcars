@@ -27,8 +27,9 @@
 .qualityselection {
   border: 1px solid dodgerblue;
   color: grey;
-  padding: 1em 1em;
+  padding: 1em;
   cursor: pointer;
+  margin-bottom: 0.25em;
 }
 .qualityselected {
   background-color: dodgerblue;

@@ -5,6 +5,8 @@ import {
   PerspectiveCamera as DreiPerspectiveCamera,
 } from '@react-three/drei';
 import { TeslaThree } from '@/component/teslathree';
+import { LowTeslaThree } from '@/component/lowteslathree';
+import { LowCyberTruck } from '@/component/lowcybertruck';
 import { CyberTruck } from '@/component/cybertruck';
 import { Canvas } from '@react-three/fiber';
 import { useState, useRef, useEffect } from 'react';
@@ -19,6 +21,7 @@ export default function Home() {
   const [expandBottom, setExpandBottom] = useState(false);
   const [carmodel, setCarModel] = useState('3');
   const [colorIndex, setColorIndex] = useState(0);
+  const [quality, setQuality] = useState('low');
   const camRef = useRef();
   const handleOptionClick = option => {
     setOption(option);
@@ -28,53 +31,107 @@ export default function Home() {
     <>
       <div className="visualContainer d-xl-flex ">
         <div className="modelContainer col-xl-8">
-          {/* {carmodel === '3' ? (
-            <Suspense fallback={<Spinner />}>
-              <>
-                <Canvas camera={{ position: [0, 0, 5], fov: 75 }}>
-                  <DreiPerspectiveCamera
-                    makeDefault
-                    ref={camRef}
-                    position={[2, 1, 1]}
-                  />
-                  <TeslaThree color={color} texture={texture} />
-                  <OrbitControls
-                    target={[0, 0, 0]}
-                    autoRotate
-                    autoRotateSpeed={0.1}
-                    camera={camRef.current}
-                    minDistance={500}
-                    maxDistance={800}
-                    maxPolarAngle={Math.PI / 2}
-                  />
-                  <Environment preset="sunset" />
-                </Canvas>
-              </>
-            </Suspense>
+          {quality === 'low' ? (
+            <>
+              {carmodel === '3' ? (
+                <Suspense fallback={<Spinner />}>
+                  <>
+                    <Canvas camera={{ position: [0, 0, 5], fov: 75 }}>
+                      <DreiPerspectiveCamera
+                        makeDefault
+                        ref={camRef}
+                        position={[2, 1, 1]}
+                      />
+                      <LowTeslaThree color={color} texture={texture} />
+                      <OrbitControls
+                        target={[0, 0, 0]}
+                        autoRotate
+                        autoRotateSpeed={0.1}
+                        camera={camRef.current}
+                        minDistance={500}
+                        maxDistance={800}
+                        maxPolarAngle={Math.PI / 2}
+                      />
+                      <Environment preset="sunset" />
+                    </Canvas>
+                  </>
+                </Suspense>
+              ) : (
+                <Suspense fallback={<Spinner />}>
+                  <>
+                    <Canvas camera={{ position: [0, 0, 5], fov: 75 }}>
+                      <DreiPerspectiveCamera
+                        makeDefault
+                        ref={camRef}
+                        position={[2, 1, 1]}
+                      />
+                      <LowCyberTruck color={color} texture={texture} />
+                      <OrbitControls
+                        target={[0, 0, 0]}
+                        autoRotate
+                        autoRotateSpeed={0.1}
+                        camera={camRef.current}
+                        minDistance={5}
+                        maxDistance={7}
+                        maxPolarAngle={Math.PI / 2}
+                      />
+                      <Environment preset="sunset" />
+                    </Canvas>
+                  </>
+                </Suspense>
+              )}
+            </>
           ) : (
-            <Suspense fallback={<Spinner />}>
-              <>
-                <Canvas camera={{ position: [0, 0, 5], fov: 75 }}>
-                  <DreiPerspectiveCamera
-                    makeDefault
-                    ref={camRef}
-                    position={[2, 1, 1]}
-                  />
-                  <CyberTruck color={color} texture={texture} />
-                  <OrbitControls
-                    target={[0, 0, 0]}
-                    autoRotate
-                    autoRotateSpeed={0.1}
-                    camera={camRef.current}
-                    minDistance={5}
-                    maxDistance={7}
-                    maxPolarAngle={Math.PI / 2}
-                  />
-                  <Environment preset="sunset" />
-                </Canvas>
-              </>
-            </Suspense>
-          )} */}
+            <>
+              {carmodel === '3' ? (
+                <Suspense fallback={<Spinner />}>
+                  <>
+                    <Canvas camera={{ position: [0, 0, 5], fov: 75 }}>
+                      <DreiPerspectiveCamera
+                        makeDefault
+                        ref={camRef}
+                        position={[2, 1, 1]}
+                      />
+                      <TeslaThree color={color} texture={texture} />
+                      <OrbitControls
+                        target={[0, 0, 0]}
+                        autoRotate
+                        autoRotateSpeed={0.1}
+                        camera={camRef.current}
+                        minDistance={500}
+                        maxDistance={800}
+                        maxPolarAngle={Math.PI / 2}
+                      />
+                      <Environment preset="sunset" />
+                    </Canvas>
+                  </>
+                </Suspense>
+              ) : (
+                <Suspense fallback={<Spinner />}>
+                  <>
+                    <Canvas camera={{ position: [0, 0, 5], fov: 75 }}>
+                      <DreiPerspectiveCamera
+                        makeDefault
+                        ref={camRef}
+                        position={[2, 1, 1]}
+                      />
+                      <CyberTruck color={color} texture={texture} />
+                      <OrbitControls
+                        target={[0, 0, 0]}
+                        autoRotate
+                        autoRotateSpeed={0.1}
+                        camera={camRef.current}
+                        minDistance={5}
+                        maxDistance={7}
+                        maxPolarAngle={Math.PI / 2}
+                      />
+                      <Environment preset="sunset" />
+                    </Canvas>
+                  </>
+                </Suspense>
+              )}
+            </>
+          )}
         </div>
         <div
           className={expandBottom ? 'mobilemenuContainer' : ''}
@@ -148,7 +205,23 @@ export default function Home() {
                   >
                     Tesla Model y
                   </div>
-                  <p>Select model quality</p>
+                  <p className="text-secondary center-text">
+                    Select model quality
+                  </p>
+                  <div className="d-flex justify-content-around flex-wrap">
+                    <div
+                      className={`qualityselection ${
+                        quality === 'low' ? 'qualityselected' : ''
+                      }`}
+                      onClick={() => setQuality('low')}
+                    >{`Low quality <1mb`}</div>
+                    <div
+                      className={`qualityselection ${
+                        quality === 'high' ? 'qualityselected' : ''
+                      }`}
+                      onClick={() => setQuality('high')}
+                    >{`High quality >20mb`}</div>
+                  </div>
                 </>
               ) : option === 2 ? (
                 <>
@@ -236,8 +309,18 @@ export default function Home() {
               <div className="carmodelContainer">Tesla Model y</div>
               <p className="text-secondary center-text">Select model quality</p>
               <div className="d-flex justify-content-around flex-wrap">
-                <div className="qualityselection qualityselected">{`Low quality <1mb`}</div>
-                <div className="qualityselection">{`High quality >20mb`}</div>
+                <div
+                  className={`qualityselection ${
+                    quality === 'low' ? 'qualityselected' : ''
+                  }`}
+                  onClick={() => setQuality('low')}
+                >{`Low quality <1mb`}</div>
+                <div
+                  className={`qualityselection ${
+                    quality === 'high' ? 'qualityselected' : ''
+                  }`}
+                  onClick={() => setQuality('high')}
+                >{`High quality >20mb`}</div>
               </div>
             </>
           ) : option === 2 ? (
