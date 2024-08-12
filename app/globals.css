@@ -9,6 +9,40 @@
 .bold-text {
   font-weight: 700;
 }
+.spinnercontainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.spinner {
+  width: 100px;
+  height: 100px;
+  margin: auto;
+  border-bottom: 2px solid dodgerblue;
+  border-radius: 50%;
+  animation: spin 2s ease-out infinite forwards;
+}
+.qualityselection {
+  border: 1px solid dodgerblue;
+  color: grey;
+  padding: 1em;
+  cursor: pointer;
+  margin-bottom: 0.25em;
+}
+.qualityselected {
+  background-color: dodgerblue;
+  color: white;
+}
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
 .visualContainer {
   height: 100vh;
 }
@@ -17,7 +51,7 @@
   height: 100vh;
 }
 .colorChoiceContainer {
-  width: 30%;
+  width: 40%;
   padding: 2em;
   max-height: 100vh;
   overflow-y: scroll;
@@ -58,14 +92,43 @@
   display: flex;
   justify-content: space-between;
 }
+.menuContainerDesktop {
+  margin: 1em;
+  padding: 0.3em 0;
+  border-radius: 12px;
+  display: flex;
+}
 .menuContainer div {
   font-weight: 900px;
   text-align: center;
   padding: 1.1em 0;
   width: 33.3%;
   font-size: 14px;
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   color: grey;
+}
+.menuContainerDesktop div {
+  font-weight: 900px;
+  text-align: center;
+  padding: 1.1em 0;
+  width: 33.3%;
+  font-size: 14px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  cursor: pointer;
+  transition: all 1s ease;
+}
+.menuContainerDesktop
+  div:hover:not(.menuItemActive1, .menuItemActive2, .menuItemActive3) {
+  background-color: lightgrey;
+  color: #000;
+}
+.menu1 {
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+}
+.menu3 {
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
 }
 .menuItemActive1 {
   background-color: #171717;
@@ -102,13 +165,22 @@
 label {
   margin: 1em;
 }
+.circleborder {
+  border-radius: 50%;
+  object-fit: cover;
+}
 .colorpicker {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  border: 2px solid lightgray;
   margin-right: 0.91em;
   margin-bottom: 1em;
+  cursor: pointer;
+  border: 1px solid lightblue;
+}
+.colorpickeractive {
+  border: 2px solid dodgerblue;
+  box-shadow: 0 0 8px dodgerblue;
 }
 .colorinput {
   border: none;
@@ -132,7 +204,7 @@ label {
   display: flex;
   align-items: center;
 }
-.carmodelContainer:hover {
+.carmodelContainerActive {
   border: 1px solid dodgerblue;
   box-shadow: 0 0 6px dodgerblue;
 }

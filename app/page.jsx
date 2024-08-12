@@ -5,18 +5,25 @@ import {
   PerspectiveCamera as DreiPerspectiveCamera,
 } from "@react-three/drei";
 import { TeslaThree } from "@/component/teslathree";
+import { LowTeslaThree } from "@/component/lowteslathree";
+import { LowCyberTruck } from "@/component/lowcybertruck";
 import { CyberTruck } from "@/component/cybertruck";
 import { Canvas } from "@react-three/fiber";
 import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import colors from "@/app/colors.json";
+import { Suspense } from "react";
+import Spinner from "./spinner";
 export default function Home() {
   const [color, setColor] = useState("#000");
   const [texture, setTexture] = useState("/K001.png");
   const [option, setOption] = useState(1);
   const [expandBottom, setExpandBottom] = useState(false);
-  const [carmodel, setCarModel] = useState("4");
+  const [carmodel, setCarModel] = useState("3");
+  const [colorIndex, setColorIndex] = useState(0);
+  const [quality, setQuality] = useState("low");
   const camRef = useRef();
+  const camRefCyberTruck = useRef();
   const handleOptionClick = (option) => {
     setOption(option);
     setExpandBottom(true);
@@ -24,45 +31,107 @@ export default function Home() {
   return (
     <>
       <div className="visualContainer d-xl-flex ">
-        <div className="modelContainer col-xl-9">
-          {carmodel === "3" ? (
-            <Canvas camera={{ position: [0, 0, 5], fov: 75 }}>
-              <DreiPerspectiveCamera
-                makeDefault
-                ref={camRef}
-                position={[2, 1, 1]}
-              />
-              <TeslaThree color={color} texture={texture} />
-              <OrbitControls
-                target={[0, 0, 0]}
-                autoRotate
-                autoRotateSpeed={0.1}
-                camera={camRef.current}
-                minDistance={500}
-                maxDistance={800}
-                maxPolarAngle={Math.PI / 2}
-              />
-              <Environment preset="sunset" />
-            </Canvas>
+        <div className="modelContainer col-xl-8">
+          {quality === "low" ? (
+            <>
+              {carmodel === "3" ? (
+                <Suspense fallback={<Spinner />}>
+                  <>
+                    <Canvas camera={{ position: [0, 0, 5], fov: 75 }}>
+                      <DreiPerspectiveCamera
+                        makeDefault
+                        ref={camRef}
+                        position={[2, 1, 1]}
+                      />
+                      <LowTeslaThree color={color} texture={texture} />
+                      <OrbitControls
+                        target={[0, 0, 0]}
+                        autoRotate
+                        autoRotateSpeed={0.1}
+                        camera={camRef.current}
+                        minDistance={500}
+                        maxDistance={800}
+                        maxPolarAngle={Math.PI / 2}
+                      />
+                      <Environment preset="sunset" />
+                    </Canvas>
+                  </>
+                </Suspense>
+              ) : (
+                <Suspense fallback={<Spinner />}>
+                  <>
+                    <Canvas camera={{ position: [0, 0, 5], fov: 75 }}>
+                      <DreiPerspectiveCamera
+                        makeDefault
+                        ref={camRefCyberTruck}
+                        position={[2, 1, 1]}
+                      />
+                      <LowCyberTruck color={color} texture={texture} />
+                      <OrbitControls
+                        target={[0, 0, 0]}
+                        autoRotate
+                        autoRotateSpeed={0.1}
+                        camera={camRefCyberTruck.current}
+                        minDistance={5}
+                        maxDistance={7}
+                        maxPolarAngle={Math.PI / 2}
+                      />
+                      <Environment preset="sunset" />
+                    </Canvas>
+                  </>
+                </Suspense>
+              )}
+            </>
           ) : (
-            <Canvas camera={{ position: [0, 0, 5], fov: 75 }}>
-              <DreiPerspectiveCamera
-                makeDefault
-                ref={camRef}
-                position={[2, 1, 1]}
-              />
-              <CyberTruck color={color} texture={texture} />
-              <OrbitControls
-                target={[0, 0, 0]}
-                autoRotate
-                autoRotateSpeed={0.1}
-                camera={camRef.current}
-                minDistance={6}
-                maxDistance={10}
-                maxPolarAngle={Math.PI / 2}
-              />
-              <Environment preset="sunset" />
-            </Canvas>
+            <>
+              {carmodel === "3" ? (
+                <Suspense fallback={<Spinner />}>
+                  <>
+                    <Canvas camera={{ position: [0, 0, 5], fov: 75 }}>
+                      <DreiPerspectiveCamera
+                        makeDefault
+                        ref={camRef}
+                        position={[2, 1, 1]}
+                      />
+                      <TeslaThree color={color} texture={texture} />
+                      <OrbitControls
+                        target={[0, 0, 0]}
+                        autoRotate
+                        autoRotateSpeed={0.1}
+                        camera={camRef.current}
+                        minDistance={500}
+                        maxDistance={800}
+                        maxPolarAngle={Math.PI / 2}
+                      />
+                      <Environment preset="sunset" />
+                    </Canvas>
+                  </>
+                </Suspense>
+              ) : (
+                <Suspense fallback={<Spinner />}>
+                  <>
+                    <Canvas camera={{ position: [0, 0, 5], fov: 75 }}>
+                      <DreiPerspectiveCamera
+                        makeDefault
+                        ref={camRefCyberTruck}
+                        position={[2, 1, 1]}
+                      />
+                      <CyberTruck color={color} texture={texture} />
+                      <OrbitControls
+                        target={[0, 0, 0]}
+                        autoRotate
+                        autoRotateSpeed={0.1}
+                        camera={camRefCyberTruck.current}
+                        minDistance={5}
+                        maxDistance={7}
+                        maxPolarAngle={Math.PI / 2}
+                      />
+                      <Environment preset="sunset" />
+                    </Canvas>
+                  </>
+                </Suspense>
+              )}
+            </>
           )}
         </div>
         <div
@@ -108,7 +177,9 @@ export default function Home() {
                 <>
                   {" "}
                   <div
-                    className="carmodelContainer"
+                    className={`carmodelContainer ${
+                      carmodel === "3" ? "carmodelContainerActive" : ""
+                    }`}
                     onClick={() => {
                       setCarModel("3");
                       setExpandBottom(false);
@@ -117,7 +188,9 @@ export default function Home() {
                     Tesla Model 3
                   </div>
                   <div
-                    className="carmodelContainer"
+                    className={`carmodelContainer ${
+                      carmodel === "cybertruck" ? "carmodelContainerActive" : ""
+                    }`}
                     onClick={() => {
                       setCarModel("cybertruck");
                       setExpandBottom(false);
@@ -133,6 +206,23 @@ export default function Home() {
                   >
                     Tesla Model y
                   </div>
+                  <p className="text-secondary center-text">
+                    Select model quality
+                  </p>
+                  <div className="d-flex justify-content-around flex-wrap">
+                    <div
+                      className={`qualityselection ${
+                        quality === "low" ? "qualityselected" : ""
+                      }`}
+                      onClick={() => setQuality("low")}
+                    >{`Low quality <1mb`}</div>
+                    <div
+                      className={`qualityselection ${
+                        quality === "high" ? "qualityselected" : ""
+                      }`}
+                      onClick={() => setQuality("high")}
+                    >{`High quality >20mb`}</div>
+                  </div>
                 </>
               ) : option === 2 ? (
                 <>
@@ -141,26 +231,26 @@ export default function Home() {
                     {colors.map((colour, index) => (
                       <div
                         key={index}
-                        className="colorpicker"
+                        className={`colorpicker ${
+                          colorIndex === index ? "colorpickeractive" : ""
+                        }`}
                         style={{ backgroundColor: `#${colour.color}` }}
                         onClick={() => {
                           setColor(`#${colour.color}`);
                           setTexture(`${colour.texture}`);
+                          setColorIndex(index);
+                          setExpandBottom(false);
                         }}
-                      ></div>
+                      >
+                        <Image
+                          src={colour.texture}
+                          alt="textue"
+                          width={40}
+                          height={40}
+                          className="circleborder"
+                        />
+                      </div>
                     ))}
-                  </div>
-                  <p className="text-secondary mt-4">Custom color</p>
-                  <div
-                    className="colorpicker"
-                    style={{ backgroundColor: color }}
-                  >
-                    <input
-                      type="color"
-                      className="colorinput"
-                      value={color}
-                      onChange={(e) => setColor(e.target.value)}
-                    />
                   </div>
                 </>
               ) : (
@@ -169,57 +259,102 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className="colorChoiceContainer d-none d-xl-block">
-          <label className="bold-text">Choose your car model</label>
-          <div className="carmodelContainer">
-            <Image
-              src={"/tesla3.png"}
-              alt="tesla model three"
-              width={150}
-              height={100}
-              className="modelsImage"
-            />
-            Tesla Model Y
-          </div>
-          <div className="carmodelContainer">
-            <Image
-              src={"/teslay.png"}
-              alt="tesla model three"
-              width={150}
-              height={100}
-              objectFit="cover"
-              className="modelsImage"
-            />
-            Tesla Model 3
-          </div>
-          <div
-            className="carmodelContainer"
-            onClick={() => setCarModel("cybertruck")}
-          >
-            <Image
-              src={"/teslaz.jpg"}
-              alt="tesla model three"
-              width={150}
-              height={100}
-              className="modelsImage"
-            />
-            Tesla Cybertruck
-          </div>
-          <label className="bold-text">Change color</label>
-          <div className="colorPickerContainer">
-            <div className="colorpicker" style={{ backgroundColor: color }}>
-              <input
-                type="color"
-                className="colorinput"
-                value={color}
-                onChange={(e) => setColor(e.target.value)}
-              />
+        <div className="colorChoiceContainer d-none d-xl-block ">
+          <div>
+            <div className="menuContainerDesktop">
+              <div
+                className={option === 1 ? "menuItemActive1" : "memu1"}
+                onClick={() => {
+                  setOption(1);
+                }}
+              >
+                Select Model
+              </div>
+              <div
+                className={option === 2 ? "menuItemActive2" : ""}
+                onClick={() => {
+                  setOption(2);
+                }}
+              >
+                Choose Color
+              </div>
+              <div
+                className={option === 3 ? "menuItemActive3" : "menu3"}
+                onClick={() => {
+                  setOption(3);
+                }}
+              >
+                Review
+              </div>
             </div>
-            <label htmlFor="" className="text-secondary">
-              {color}
-            </label>
           </div>
-          <button className="create-order">Create Order</button>
+          {option === 1 ? (
+            <>
+              {" "}
+              <div
+                className={`carmodelContainer ${
+                  carmodel === "3" ? "carmodelContainerActive" : ""
+                }`}
+                onClick={() => setCarModel("3")}
+              >
+                Tesla Model 3
+              </div>
+              <div
+                className={`carmodelContainer ${
+                  carmodel === "cybertruck" ? "carmodelContainerActive" : ""
+                }`}
+                onClick={() => setCarModel("cybertruck")}
+              >
+                Tesla Cybertruck
+              </div>
+              <div className="carmodelContainer">Tesla Model y</div>
+              <p className="text-secondary center-text">Select model quality</p>
+              <div className="d-flex justify-content-around flex-wrap">
+                <div
+                  className={`qualityselection ${
+                    quality === "low" ? "qualityselected" : ""
+                  }`}
+                  onClick={() => setQuality("low")}
+                >{`Low quality <1mb`}</div>
+                <div
+                  className={`qualityselection ${
+                    quality === "high" ? "qualityselected" : ""
+                  }`}
+                  onClick={() => setQuality("high")}
+                >{`High quality >20mb`}</div>
+              </div>
+            </>
+          ) : option === 2 ? (
+            <>
+              <p className="text-secondary">Color</p>
+              <div className="d-flex flex-wrap">
+                {colors.map((colour, index) => (
+                  <div
+                    key={index}
+                    className={`colorpicker ${
+                      colorIndex === index ? "colorpickeractive" : ""
+                    }`}
+                    style={{ backgroundColor: `#${colour.color}` }}
+                    onClick={() => {
+                      setColor(`#${colour.color}`);
+                      setTexture(`${colour.texture}`);
+                      setColorIndex(index);
+                    }}
+                  >
+                    <Image
+                      src={colour.texture}
+                      alt="textue"
+                      width={40}
+                      height={40}
+                      className="circleborder"
+                    />
+                  </div>
+                ))}
+              </div>
+            </>
+          ) : (
+            <>option 3</>
+          )}
         </div>
       </div>
     </>

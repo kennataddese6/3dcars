@@ -3,9 +3,9 @@ import React, { useRef, useEffect } from 'react';
 import { useGLTF } from '@react-three/drei';
 import * as THREE from 'three';
 
-export function TeslaThree({ color, texture }) {
+export function LowCyberTruck({ color, texture }) {
   const forged = texture;
-  const model = useGLTF('/teslamodel3.glb');
+  const model = useGLTF('teslaCyberTruckLow.glb');
   const carMaterial = useRef();
   const textureLoader = new THREE.TextureLoader();
   const forgedTexture = textureLoader.load(forged);
@@ -30,13 +30,11 @@ export function TeslaThree({ color, texture }) {
           ? node.material
           : [node.material];
         materials.forEach(material => {
-          if (material.name.includes('primary')) {
+          if (material.name.includes('body')) {
             carMaterial.current = material;
             if (forged) {
               carMaterial.current.color.set('white');
               carMaterial.current.map = forgedTexture; // Apply the forged texture
-              /*        carMaterial.current.metalness = 1; // Adjust the value (0 to 1) for desired metallic effect */
-              /*   carMaterial.current.roughness = 0.2; // Adjust the roughness (0 to 1) for surface smoothness */
               carMaterial.current.needsUpdate = true; // Ensure the material is updated
               console.log('Material found and texture applied:', material);
             }
@@ -49,13 +47,13 @@ export function TeslaThree({ color, texture }) {
   // Call the function to traverse materials after the model is loaded
   useEffect(() => {
     traverseMaterials(model.scene);
-    if (!forged) {
+    if (!texture) {
       changeCarPaintColor();
     }
   }, [model.scene, forged]);
 
   useEffect(() => {
-    if (!forged) {
+    if (!texture) {
       changeCarPaintColor();
     }
   }, [color, forged]);
