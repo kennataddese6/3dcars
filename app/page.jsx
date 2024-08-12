@@ -7,6 +7,7 @@ import {
 import { TeslaThree } from "@/component/teslathree";
 import { LowTeslaThree } from "@/component/lowteslathree";
 import { LowCyberTruck } from "@/component/lowcybertruck";
+import { TeslaModelY } from "@/component/teslamodely";
 import { CyberTruck } from "@/component/cybertruck";
 import { Canvas } from "@react-three/fiber";
 import { useState, useRef, useEffect } from "react";
@@ -57,7 +58,7 @@ export default function Home() {
                     </Canvas>
                   </>
                 </Suspense>
-              ) : (
+              ) : carmodel === "cybertruck" ? (
                 <Suspense fallback={<Spinner />}>
                   <>
                     <Canvas camera={{ position: [0, 0, 5], fov: 75 }}>
@@ -74,6 +75,29 @@ export default function Home() {
                         camera={camRefCyberTruck.current}
                         minDistance={5}
                         maxDistance={7}
+                        maxPolarAngle={Math.PI / 2}
+                      />
+                      <Environment preset="sunset" />
+                    </Canvas>
+                  </>
+                </Suspense>
+              ) : (
+                <Suspense fallback={<Spinner />}>
+                  <>
+                    <Canvas camera={{ position: [0, 0, 5], fov: 75 }}>
+                      <DreiPerspectiveCamera
+                        makeDefault
+                        ref={camRefCyberTruck}
+                        position={[2, 1, 1]}
+                      />
+                      <TeslaModelY color={color} texture={texture} />
+                      <OrbitControls
+                        target={[0, 0, 0]}
+                        autoRotate
+                        autoRotateSpeed={0.1}
+                        camera={camRefCyberTruck.current}
+                        minDistance={1}
+                        maxDistance={3}
                         maxPolarAngle={Math.PI / 2}
                       />
                       <Environment preset="sunset" />
@@ -107,7 +131,7 @@ export default function Home() {
                     </Canvas>
                   </>
                 </Suspense>
-              ) : (
+              ) : carmodel === "cybertruck" ? (
                 <Suspense fallback={<Spinner />}>
                   <>
                     <Canvas camera={{ position: [0, 0, 5], fov: 75 }}>
@@ -124,6 +148,29 @@ export default function Home() {
                         camera={camRefCyberTruck.current}
                         minDistance={5}
                         maxDistance={7}
+                        maxPolarAngle={Math.PI / 2}
+                      />
+                      <Environment preset="sunset" />
+                    </Canvas>
+                  </>
+                </Suspense>
+              ) : (
+                <Suspense fallback={<Spinner />}>
+                  <>
+                    <Canvas camera={{ position: [0, 0, 5], fov: 75 }}>
+                      <DreiPerspectiveCamera
+                        makeDefault
+                        ref={camRefCyberTruck}
+                        position={[2, 1, 1]}
+                      />
+                      <TeslaModelY color={color} texture={texture} />
+                      <OrbitControls
+                        target={[0, 0, 0]}
+                        autoRotate
+                        autoRotateSpeed={0.1}
+                        camera={camRefCyberTruck.current}
+                        minDistance={-25}
+                        maxDistance={-25}
                         maxPolarAngle={Math.PI / 2}
                       />
                       <Environment preset="sunset" />
@@ -199,8 +246,13 @@ export default function Home() {
                     Tesla Cybertruck
                   </div>
                   <div
-                    className="carmodelContainer"
+                    className={`carmodelContainer ${
+                      carmodel === "teslamodely"
+                        ? "carmodelContainerActive"
+                        : ""
+                    }`}
                     onClick={() => {
+                      setCarModel("teslamodely");
                       setExpandBottom(false);
                     }}
                   >
@@ -307,7 +359,14 @@ export default function Home() {
               >
                 Tesla Cybertruck
               </div>
-              <div className="carmodelContainer">Tesla Model y</div>
+              <div
+                className={`carmodelContainer ${
+                  carmodel === "teslamodely" ? "carmodelContainerActive" : ""
+                }`}
+                onClick={() => setCarModel("teslamodely")}
+              >
+                Tesla Model y
+              </div>
               <p className="text-secondary center-text">Select model quality</p>
               <div className="d-flex justify-content-around flex-wrap">
                 <div

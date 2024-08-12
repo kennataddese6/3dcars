@@ -5,7 +5,7 @@ import * as THREE from "three";
 
 export function TeslaModelY({ color, texture }) {
   const forged = texture;
-  const model = useGLTF("/teslamodely.glb");
+  const model = useGLTF("/teslamodelyhigh.glb");
   const carMaterial = useRef();
   const textureLoader = new THREE.TextureLoader();
   const forgedTexture = textureLoader.load(forged);
@@ -30,7 +30,10 @@ export function TeslaModelY({ color, texture }) {
           ? node.material
           : [node.material];
         materials.forEach((material) => {
-          if (material.name.includes("CAR_PAINT")) {
+          if (
+            material.name.includes("body") &&
+            !material.name.includes("glass_body")
+          ) {
             carMaterial.current = material;
             if (forged) {
               carMaterial.current.color.set("white");
