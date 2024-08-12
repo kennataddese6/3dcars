@@ -1,11 +1,11 @@
-'use client';
-import React, { useRef, useEffect } from 'react';
-import { useGLTF } from '@react-three/drei';
-import * as THREE from 'three';
+"use client";
+import React, { useRef, useEffect } from "react";
+import { useGLTF } from "@react-three/drei";
+import * as THREE from "three";
 
 export function LowCyberTruck({ color, texture }) {
   const forged = texture;
-  const model = useGLTF('teslaCyberTruckLow.glb');
+  const model = useGLTF("teslaCyberTruckLow.glb");
   const carMaterial = useRef();
   const textureLoader = new THREE.TextureLoader();
   const forgedTexture = textureLoader.load(forged);
@@ -23,20 +23,20 @@ export function LowCyberTruck({ color, texture }) {
   };
 
   // Traverse the model and find the car paint material
-  const traverseMaterials = object => {
-    object.traverse(node => {
+  const traverseMaterials = (object) => {
+    object.traverse((node) => {
       if (node.isMesh) {
         const materials = Array.isArray(node.material)
           ? node.material
           : [node.material];
-        materials.forEach(material => {
-          if (material.name.includes('body')) {
+        materials.forEach((material) => {
+          if (material.name.includes("Silver")) {
             carMaterial.current = material;
             if (forged) {
-              carMaterial.current.color.set('white');
+              carMaterial.current.color.set("white");
               carMaterial.current.map = forgedTexture; // Apply the forged texture
               carMaterial.current.needsUpdate = true; // Ensure the material is updated
-              console.log('Material found and texture applied:', material);
+              console.log("Material found and texture applied:", material);
             }
           }
         });

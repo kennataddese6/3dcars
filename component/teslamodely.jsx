@@ -3,9 +3,9 @@ import React, { useRef, useEffect } from "react";
 import { useGLTF } from "@react-three/drei";
 import * as THREE from "three";
 
-export function LowTeslaThree({ color, texture }) {
+export function TeslaModelY({ color, texture }) {
   const forged = texture;
-  const model = useGLTF("/teslamodel3lower.glb");
+  const model = useGLTF("/teslamodely.glb");
   const carMaterial = useRef();
   const textureLoader = new THREE.TextureLoader();
   const forgedTexture = textureLoader.load(forged);
