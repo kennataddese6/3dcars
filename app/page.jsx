@@ -25,6 +25,7 @@ export default function Home() {
   const [quality, setQuality] = useState("low");
   const camRef = useRef();
   const camRefCyberTruck = useRef();
+  const camRefModelY = useRef();
   const handleOptionClick = (option) => {
     setOption(option);
     setExpandBottom(true);
@@ -87,7 +88,7 @@ export default function Home() {
                     <Canvas camera={{ position: [0, 0, 5], fov: 75 }}>
                       <DreiPerspectiveCamera
                         makeDefault
-                        ref={camRefCyberTruck}
+                        ref={camRefModelY}
                         position={[2, 1, 1]}
                       />
                       <TeslaModelY color={color} texture={texture} />
@@ -95,7 +96,7 @@ export default function Home() {
                         target={[0, 0, 0]}
                         autoRotate
                         autoRotateSpeed={0.1}
-                        camera={camRefCyberTruck.current}
+                        camera={camRefModelY.current}
                         minDistance={1}
                         maxDistance={3}
                         maxPolarAngle={Math.PI / 2}
@@ -160,7 +161,7 @@ export default function Home() {
                     <Canvas camera={{ position: [0, 0, 5], fov: 75 }}>
                       <DreiPerspectiveCamera
                         makeDefault
-                        ref={camRefCyberTruck}
+                        ref={camRefModelY}
                         position={[2, 1, 1]}
                       />
                       <TeslaModelY color={color} texture={texture} />
@@ -168,7 +169,7 @@ export default function Home() {
                         target={[0, 0, 0]}
                         autoRotate
                         autoRotateSpeed={0.1}
-                        camera={camRefCyberTruck.current}
+                        camera={camRefModelY.current}
                         minDistance={-25}
                         maxDistance={-25}
                         maxPolarAngle={Math.PI / 2}
