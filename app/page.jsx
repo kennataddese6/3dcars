@@ -170,8 +170,8 @@ export default function Home() {
                         autoRotate
                         autoRotateSpeed={0.1}
                         camera={camRefModelY.current}
-                        minDistance={-25}
-                        maxDistance={-25}
+                        minDistance={1}
+                        maxDistance={3}
                         maxPolarAngle={Math.PI / 2}
                       />
                       <Environment preset="sunset" />
@@ -246,19 +246,23 @@ export default function Home() {
                   >
                     Tesla Cybertruck
                   </div>
-                  <div
-                    className={`carmodelContainer ${
-                      carmodel === "teslamodely"
-                        ? "carmodelContainerActive"
-                        : ""
-                    }`}
-                    onClick={() => {
-                      setCarModel("teslamodely");
-                      setExpandBottom(false);
-                    }}
-                  >
-                    Tesla Model y
-                  </div>
+                  {quality === "low" ? (
+                    ""
+                  ) : (
+                    <div
+                      className={`carmodelContainer ${
+                        carmodel === "teslamodely"
+                          ? "carmodelContainerActive"
+                          : ""
+                      }`}
+                      onClick={() => {
+                        setCarModel("teslamodely");
+                        setExpandBottom(false);
+                      }}
+                    >
+                      Tesla Model y
+                    </div>
+                  )}
                   <p className="text-secondary center-text">
                     Select model quality
                   </p>
@@ -360,14 +364,18 @@ export default function Home() {
               >
                 Tesla Cybertruck
               </div>
-              <div
-                className={`carmodelContainer ${
-                  carmodel === "teslamodely" ? "carmodelContainerActive" : ""
-                }`}
-                onClick={() => setCarModel("teslamodely")}
-              >
-                Tesla Model y
-              </div>
+              {quality === "low" ? (
+                ""
+              ) : (
+                <div
+                  className={`carmodelContainer ${
+                    carmodel === "teslamodely" ? "carmodelContainerActive" : ""
+                  }`}
+                  onClick={() => setCarModel("teslamodely")}
+                >
+                  Tesla Model y
+                </div>
+              )}
               <p className="text-secondary center-text">Select model quality</p>
               <div className="d-flex justify-content-around flex-wrap">
                 <div
