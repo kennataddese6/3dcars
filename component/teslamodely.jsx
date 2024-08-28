@@ -4,21 +4,55 @@ import { useGLTF } from "@react-three/drei";
 import * as THREE from "three";
 
 export function TeslaModelY({ color, texture }) {
-  const forged = texture;
   const model = useGLTF("/teslamodelyhigh.glb");
   const carMaterial = useRef();
   const textureLoader = new THREE.TextureLoader();
-  const forgedTexture = textureLoader.load(forged);
+  const forgedTexture = textureLoader.load(texture);
 
-  // Set the texture to repeat
-  forgedTexture.wrapS = THREE.RepeatWrapping;
-  forgedTexture.wrapT = THREE.RepeatWrapping;
-  forgedTexture.repeat.set(10, 10); // Adjust the repeat values as needed
+  // Correct for gamma/lightness issues
+  forgedTexture.encoding = THREE.sRGBEncoding;
 
-  // Function to change the color of the car paint
-  const changeCarPaintColor = () => {
+  // Ensure the texture does not repeat
+  forgedTexture.wrapS = THREE.ClampToEdgeWrapping;
+  forgedTexture.wrapT = THREE.ClampToEdgeWrapping;
+
+  // Avoid texture repetition by ensuring UVs are adjusted
+  forgedTexture.repeat.set(1, 1); // This should be kept at (1,1) for non-repeating
+  forgedTexture.offset.set(0, 0); // Keep offset at (0,0)
+
+  // Min and Mag filters for texture clarity
+  forgedTexture.minFilter = THREE.LinearMipMapLinearFilter;
+  forgedTexture.magFilter = THREE.LinearFilter;
+
+  // Function to create new UV mapping
+  const createNewUVs = (geometry) => {
+    // Check if geometry already has UVs
+    if (geometry.attributes.uv) {
+      // Simply create a new UV array
+      const position = geometry.attributes.position;
+      const uv = new Float32Array(position.count * 2); // Two UV coordinates per vertex
+
+      for (let i = 0; i < position.count; i++) {
+        uv[i * 2] = position.getX(i) % 1; // X coordinate
+        uv[i * 2 + 1] = position.getY(i) % 1; // Y coordinate
+      }
+
+      geometry.setAttribute("uv", new THREE.BufferAttribute(uv, 2));
+    }
+  };
+
+  // Function to apply the texture or color to the car paint material
+  const applyMaterialProperties = () => {
     if (carMaterial.current) {
-      carMaterial.current.color.set(color); // Change 'red' to your desired color
+      if (texture) {
+        carMaterial.current.map = forgedTexture; // Apply the texture
+        carMaterial.current.color.set("white"); // Ensure the texture color shows up correctly
+        carMaterial.current.needsUpdate = true; // Ensure the material is updated
+      } else {
+        carMaterial.current.map = null; // Remove any existing texture
+        carMaterial.current.color.set(color); // Apply the color
+        carMaterial.current.needsUpdate = true; // Ensure the material is updated
+      }
     }
   };
 
@@ -35,14 +69,10 @@ export function TeslaModelY({ color, texture }) {
             !material.name.includes("glass_body")
           ) {
             carMaterial.current = material;
-            if (forged) {
-              carMaterial.current.color.set("white");
-              carMaterial.current.map = forgedTexture; // Apply the forged texture
-              /*        carMaterial.current.metalness = 1; // Adjust the value (0 to 1) for desired metallic effect */
-              /*   carMaterial.current.roughness = 0.2; // Adjust the roughness (0 to 1) for surface smoothness */
-              carMaterial.current.needsUpdate = true; // Ensure the material is updated
-              console.log("Material found and texture applied:", material);
-            }
+            // Apply new UV mapping
+            createNewUVs(node.geometry);
+            applyMaterialProperties(); // Apply texture or color to the material
+            console.log("Material found and properties applied:", material);
           }
         });
       }
@@ -52,16 +82,12 @@ export function TeslaModelY({ color, texture }) {
   // Call the function to traverse materials after the model is loaded
   useEffect(() => {
     traverseMaterials(model.scene);
-    if (!forged) {
-      changeCarPaintColor();
-    }
-  }, [model.scene, forged]);
+  }, [model.scene, forgedTexture]);
 
+  // Update material properties when the color or texture changes
   useEffect(() => {
-    if (!forged) {
-      changeCarPaintColor();
-    }
-  }, [color, forged]);
+    applyMaterialProperties();
+  }, [color, forgedTexture]);
 
   return (
     <>
