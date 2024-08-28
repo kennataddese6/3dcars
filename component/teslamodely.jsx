@@ -24,21 +24,24 @@ export function TeslaModelY({ color, texture }) {
   forgedTexture.minFilter = THREE.LinearMipMapLinearFilter;
   forgedTexture.magFilter = THREE.LinearFilter;
 
-  // Function to create new UV mapping
-  const createNewUVs = (geometry) => {
-    // Check if geometry already has UVs
-    if (geometry.attributes.uv) {
-      // Simply create a new UV array
-      const position = geometry.attributes.position;
-      const uv = new Float32Array(position.count * 2); // Two UV coordinates per vertex
+  // Function to create planar UV mapping
+  const createPlanarUVs = (geometry) => {
+    const position = geometry.attributes.position;
+    const uv = new Float32Array(position.count * 2);
 
-      for (let i = 0; i < position.count; i++) {
-        uv[i * 2] = position.getX(i) % 1; // X coordinate
-        uv[i * 2 + 1] = position.getY(i) % 1; // Y coordinate
-      }
+    // Compute bounding box
+    geometry.computeBoundingBox();
+    const { min, max } = geometry.boundingBox;
 
-      geometry.setAttribute("uv", new THREE.BufferAttribute(uv, 2));
+    // Map UV coordinates based on X and Y positions within the bounding box
+    for (let i = 0; i < position.count; i++) {
+      const x = (position.getX(i) - min.x) / (max.x - min.x);
+      const y = (position.getY(i) - min.y) / (max.y - min.y);
+      uv[i * 2] = x;
+      uv[i * 2 + 1] = y;
     }
+
+    geometry.setAttribute("uv", new THREE.BufferAttribute(uv, 2));
   };
 
   // Function to apply the texture or color to the car paint material
@@ -70,7 +73,7 @@ export function TeslaModelY({ color, texture }) {
           ) {
             carMaterial.current = material;
             // Apply new UV mapping
-            createNewUVs(node.geometry);
+            createPlanarUVs(node.geometry);
             applyMaterialProperties(); // Apply texture or color to the material
             console.log("Material found and properties applied:", material);
           }
