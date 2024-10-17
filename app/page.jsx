@@ -128,7 +128,7 @@ export default function Home() {
                         maxDistance={800}
                         maxPolarAngle={Math.PI / 2}
                       />
-                      <Environment preset="sunset" />
+                      <Environment preset="city" />
                     </Canvas>
                   </>
                 </Suspense>
@@ -151,7 +151,7 @@ export default function Home() {
                         maxDistance={7}
                         maxPolarAngle={Math.PI / 2}
                       />
-                      <Environment preset="sunset" />
+                      <Environment preset="city" />
                     </Canvas>
                   </>
                 </Suspense>
@@ -174,7 +174,7 @@ export default function Home() {
                         maxDistance={3}
                         maxPolarAngle={Math.PI / 2}
                       />
-                      <Environment preset="sunset" />
+                      <Environment preset="city" />
                     </Canvas>
                   </>
                 </Suspense>
