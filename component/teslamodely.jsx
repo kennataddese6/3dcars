@@ -4,7 +4,7 @@ import { useGLTF } from "@react-three/drei";
 import * as THREE from "three";
 
 export function TeslaModelY({ color, texture }) {
-  const model = useGLTF("/teslamodelyhigh.glb");
+  const model = useGLTF("/teslamodely.glb");
   const carMaterial = useRef();
   const textureLoader = new THREE.TextureLoader();
   const forgedTexture = textureLoader.load(texture);
@@ -17,7 +17,7 @@ export function TeslaModelY({ color, texture }) {
   forgedTexture.wrapT = THREE.ClampToEdgeWrapping;
 
   // Avoid texture repetition by ensuring UVs are adjusted
-  forgedTexture.repeat.set(1, 1); // This should be kept at (1,1) for non-repeating
+  forgedTexture.repeat.set(10, 10); // This should be kept at (1,1) for non-repeating
   forgedTexture.offset.set(0, 0); // Keep offset at (0,0)
 
   // Min and Mag filters for texture clarity
@@ -84,12 +84,12 @@ export function TeslaModelY({ color, texture }) {
 
   // Call the function to traverse materials after the model is loaded
   useEffect(() => {
-    traverseMaterials(model.scene);
+    // traverseMaterials(model.scene);
   }, [model.scene, forgedTexture]);
 
   // Update material properties when the color or texture changes
   useEffect(() => {
-    applyMaterialProperties();
+    // applyMaterialProperties();
   }, [color, forgedTexture]);
 
   return (
